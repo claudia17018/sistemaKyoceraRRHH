@@ -227,7 +227,9 @@ function mayusculas(s) {
 }
 
 function base_url(url) {
-    let urlBase = "http://10.0.48.209//sistemas/public/";
+    //let urlBase = "http://10.0.48.209//sistemas/public/";
+    let urlBase = "'http://localhost//sistemaKyoceraRRHH/public";
+
 
     return urlBase + url;
 }

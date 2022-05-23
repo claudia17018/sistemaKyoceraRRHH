@@ -8,4 +8,10 @@ class Home extends BaseController
     {
         return view('index');
     }
+
+   public function plantilla()
+    {
+         return view('Plantilla/base');
+    }
+
 }
