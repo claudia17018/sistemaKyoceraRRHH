@@ -124,7 +124,7 @@
     <footer class="footer">
     <div class="container">
     <div class="col-md-4 d-flex align-items-center">
-      <span class="text-muted">&copy; 2021 Kyocera AVX</span>
+      <span class="text-muted">&copy; 2022 Kyocera AVX</span>
     </div>
     </div>
   </footer>
