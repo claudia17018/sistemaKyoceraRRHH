@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="KYOCERA AVX EL SALVADOR"/>
-        <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('/assets/imagen/apple-touch-icon.png'); ?>" />
-        <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url('/assets/imagen/favicon-32x32.png'); ?>" />
-        <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url('/assets/imagen/favicon-16x16.png'); ?>" />
-        <link rel="stylesheet" href="<?php echo base_url('/assets/fonts/fonts-min.css'); ?>" >
-        <link rel="stylesheet" href="<?php echo base_url('/assets/css/avxElSalvador.min.css'); ?>" >
-        <link rel="stylesheet" href="<?php echo base_url('assets/css/styles.css'); ?>">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/css/bootstrap-icons/bootstrap-icons.css'); ?>">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/css/index.css'); ?>">
+        <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('public/assets/imagen/apple-touch-icon.png'); ?>" />
+        <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url('public/assets/imagen/favicon-32x32.png'); ?>" />
+        <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url('public/assets/imagen/favicon-16x16.png'); ?>" />
+        <link rel="stylesheet" href="<?php echo base_url('public/assets/fonts/fonts-min.css'); ?>" >
+        <link rel="stylesheet" href="<?php echo base_url('public/assets/css/avxElSalvador.min.css'); ?>" >
+        <link rel="stylesheet" href="<?php echo base_url('public/assets/css/styles.css'); ?>">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/assets/css/bootstrap-icons/bootstrap-icons.css'); ?>">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/assets/css/index.css'); ?>">
     <title><?= $this->renderSection('titulo')?></title>
 </head>
 <body>
@@ -20,7 +20,7 @@
 <!--========== HEADER ==========-->
   <header class="header">
     <div class="header__container">
-      <img src="<?php echo base_url('assets/imagen/user.png'); ?>" alt="" class="header__img">
+      <img src="<?php echo base_url('/assets/imagen/user.png'); ?>" alt="" class="header__img">
         <a href="#" class="header__logo">Bienvenido </a>
           <div class="header__search">
             <input type="search" placeholder="Buscar" class="header__input">
@@ -35,8 +35,8 @@
       <nav class="nav__container">
         <div>
              <a href="#" class="nav__link nav__logo">
-              <img src="<?php echo base_url('assets/imagen/apple-touch-icon.png'); ?>" class="logo__img">
-              <img src="<?php echo base_url('assets/imagen/KyoceraAVX-name.png'); ?>" class="nav__logo-name">
+              <img src="<?php echo base_url('public/assets/imagen/apple-touch-icon.png'); ?>" class="logo__img">
+              <img src="<?php echo base_url('public/assets/imagen/KyoceraAVX-name.png'); ?>" class="nav__logo-name">
              </a>
               <div class="nav__list">
                 <div class="nav__items">               
@@ -128,9 +128,9 @@
     </div>
     </div>
   </footer>
-    <script src="<?php echo base_url('/assets/js/bootstrap.bundle.min.js'); ?>"></script>
+    <script src="<?php echo base_url('public/assets/js/bootstrap.bundle.min.js'); ?>"></script>
     <!--========== MAIN JS ==========-->
-    <script src="<?php echo base_url('assets/js/main.js'); ?>"></script>
+    <script src="<?php echo base_url('public/assets/js/main.js'); ?>"></script>
 
 </body>
 </html>

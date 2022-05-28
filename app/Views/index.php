@@ -7,19 +7,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <meta name="description" content=""/>
         <meta name="author" content="Rolando Cartagena"/>
-        <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('/assets/imagen/apple-touch-icon.png'); ?>" />
-        <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url('/assets/imagen/favicon-32x32.png'); ?>" />
-        <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url('/assets/imagen/favicon-16x16.png'); ?>" />
-        <link rel="stylesheet" href="<?php echo base_url('/assets/fonts/fonts-min.css'); ?>" >
-        <link rel="stylesheet" href="<?php echo base_url('/assets/css/avxElSalvador.min.css'); ?>" >
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/css/bootstrap-icons/bootstrap-icons.css'); ?>">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/css/index.css'); ?>">
+        <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('public/assets/imagen/apple-touch-icon.png'); ?>" />
+        <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url('public/assets/imagen/favicon-32x32.png'); ?>" />
+        <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url('public/assets/imagen/favicon-16x16.png'); ?>" />
+        <link rel="stylesheet" href="<?php echo base_url('public/assets/fonts/fonts-min.css'); ?>" >
+        <link rel="stylesheet" href="<?php echo base_url('public/assets/css/avxElSalvador.min.css'); ?>" >
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/assets/css/bootstrap-icons/bootstrap-icons.css'); ?>">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/assets/css/index.css'); ?>">
     </head>
     <body>
         <div class="container indexCss">
             <div class="row">
                 <div class="col align-self-center">
-                    <img src="<?php echo base_url('/assets/imagen/KyoceraAVX.png'); ?>" alt="KyoceraAVX" width="400" height="157"/>
+                    <img src="<?php echo base_url('public/assets/imagen/KyoceraAVX.png'); ?>" alt="KyoceraAVX" width="400" height="157"/>
                 </div>
                 <div class="col">
                     <div class="col-12">
@@ -54,6 +54,6 @@
             }
             ?>
         </div>
-        <script src="<?php echo base_url('/assets/js/bootstrap.bundle.min.js'); ?>"></script>
+        <script src="<?php echo base_url('public/assets/js/bootstrap.bundle.min.js'); ?>"></script>
     </body>
 </html>
