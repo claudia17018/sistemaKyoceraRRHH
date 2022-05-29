@@ -34,6 +34,15 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->add('/plantilla', 'Home::plantilla');
 
+$routes->group('Auth',  ['namespace' => 'App\Controllers\Auth'],function ($routes) {
+    $routes->get('', 'Usuario::index', ['as'=> 'login'] );
+    $routes->post('check', 'Usuario::signin', ['as'=> 'signin']);
+    $routes->get('logout', 'Usuario::logout');
+});
+
+$routes->group('AdminRH',  ['namespace' => 'App\Controllers\RRHH'],function ($routes) {
+    $routes->get('', 'Usuario::index', ['as'=> 'index'] );
+});
 
 
 

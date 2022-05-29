@@ -20,7 +20,7 @@
 <!--========== HEADER ==========-->
   <header class="header">
     <div class="header__container">
-      <img src="<?php echo base_url('/assets/imagen/user.png'); ?>" alt="" class="header__img">
+      <img src="<?php echo base_url('public/assets/imagen/user.png'); ?>" alt="" class="header__img">
         <a href="#" class="header__logo">Bienvenido </a>
           <div class="header__search">
             <input type="search" placeholder="Buscar" class="header__input">
@@ -111,7 +111,7 @@
                 </div>
             </div>
           </div>
-            <a href="#" class="nav__link nav__logout">
+            <a href="<?php echo base_url('Auth/Usuario/logout'); ?>" class="nav__link nav__logout">
              <i class="bi bi-box-arrow-left nav__icon" ></i>
              <span class="nav__name">Cerrar sesion</span>
             </a>
