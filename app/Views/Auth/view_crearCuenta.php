@@ -26,7 +26,7 @@
     </div>
     
     <div class="">
-    <form method="POST" action="<?= site_url('/guardarAspirante')?>" class="" id="userCreate" name="userCreate">
+    <form method="POST" action="<?= site_url('Auth/guardarAspirante')?>" class="" id="userCreate" name="userCreate">
         <div class="md-3 row">
 
         <div class="col-sm-5">
