@@ -16,7 +16,7 @@ class Usuario extends BaseController
     
         if(!$this->validate([
             'username' => 'required',
-            'password' => 'required|min_length[8]'
+            'password' => 'required'
         ])){
             return redirect()->back()
             ->with('errors',$this->validator->getErrors())

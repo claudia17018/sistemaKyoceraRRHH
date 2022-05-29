@@ -35,7 +35,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'avx',
+        'database' => 'dsi-proyecto1',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
