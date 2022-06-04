@@ -34,6 +34,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->add('/plantilla', 'Home::plantilla');
 
+
 $routes->group('Auth',  ['namespace' => 'App\Controllers\Auth'],function ($routes) {
     $routes->get('', 'Usuario::index', ['as'=> 'login'] );
     $routes->post('check', 'Usuario::signin', ['as'=> 'signin']);
@@ -44,6 +45,10 @@ $routes->group('Auth',  ['namespace' => 'App\Controllers\Auth'],function ($route
 
 $routes->group('AdminRH',  ['namespace' => 'App\Controllers\RRHH'],function ($routes) {
     $routes->get('', 'Usuario::index', ['as'=> 'index'] );
+    $routes->get('entrevistas', 'EntrevistaController::entrevistas');
+    $routes->get('nuevoComentario/(:num)', 'EntrevistaController::nuevoComentario/$1');
+    $routes->post('guardarComentario/(:num)', 'EntrevistaController::guardarComentario/$1');
+    
 });
 
 
