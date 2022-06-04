@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="<?php echo base_url('public/assets/css/styles.css'); ?>">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/assets/css/bootstrap-icons/bootstrap-icons.css'); ?>">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/assets/css/index.css'); ?>">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/assets/css/vacantes.css'); ?>">
     <title><?= $this->renderSection('titulo')?></title>
 </head>
 <body>

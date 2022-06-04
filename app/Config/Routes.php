@@ -43,7 +43,8 @@ $routes->group('Auth',  ['namespace' => 'App\Controllers\Auth'],function ($route
 });
 
 $routes->group('AdminRH',  ['namespace' => 'App\Controllers\RRHH'],function ($routes) {
-    $routes->get('', 'Usuario::index', ['as'=> 'index'] );
+    $routes->get('', 'Admin::index', ['as'=> 'index'] );
+    $routes->get('vacantes', 'Admin::vacantes');
 });
 
 
