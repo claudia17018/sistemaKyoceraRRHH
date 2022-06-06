@@ -2,37 +2,49 @@
 
 namespace App\Controllers\RRHH;
 use App\Controllers\BaseController;
-use App\Models\UserModel;
+use App\Models\UsuarioModel;
+use App\Models\DatosModel;
 use App\Models\EntrevistaModel;
 use App\Models\ComentariosEntrevistasModel;
 use App\Models\EstadoProcesoModel;
 
 class EntrevistaController extends BaseController{
     
-    public function entrevistas(){
+    public function entrevistas($idSolicitante=null){
         $entrevista = new EntrevistaModel();
         $comentario = new ComentariosEntrevistasModel();
-               
-        $datosEntrevista['datosEntrevista'] = $entrevista->orderBy('IDENTREVISTA','ASC')->findAll();
-        $datos['entrevistas'] = $datosEntrevista;
+        $solicitante = new UsuarioModel();
+        $datosCan = new DatosModel();
+        $estadoProceso = new EstadoProcesoModel();
+          
+        $datosEntrevista['datosEntrevista'] = $entrevista->orderBy('IDENTREVISTA','ASC')->getAllEntrevistasBy('IDSOLICITANTE',$idSolicitante);
         $datosComentario['datosComentario'] = $comentario->orderBy('IDCOMENTARIOENTREVISTA','ASC')->findAll();
-        $datos['comentarios'] = $datosComentario;
+        $datosSolicitante['datosSolicitante'] = $solicitante->getUsuarioBy('IDSOLICITANTE', $idSolicitante);    
+        $datosCandidato['datosCandidato'] = $datosCan->getDatosBy('IDSOLICITANTE', $idSolicitante);
+        $datosEstadoProceso['datosEstadoProceso'] = $estadoProceso->getEstadoProcesoBy('IDSOLICITANTE', $idSolicitante);
         
-        return view('RRHH/entrevistasView',$datos);
+        $data['entrevistas'] = $datosEntrevista;
+        $data['comentarios'] = $datosComentario;
+        $data['solicitante'] = $datosSolicitante;
+        $data['datosCand'] = $datosCandidato;
+        $data['estadoProceso'] = $datosEstadoProceso;
+            
+        return view('RRHH/entrevistasView',$data);
     }
     
-    public function nuevoComentario($id=null){
+    public function nuevoComentario($idEntrevista=null,$idSolicitante=null){
         
-        print_r($id);
         $entrevista = new EntrevistaModel();
-        $datos['entrevista'] = $entrevista->getEntrevistaBy('IDENTREVISTA', $id); 
+        $solicitante = new UsuarioModel();
+        $datos['entrevista'] = $entrevista->getEntrevistaBy('IDENTREVISTA', $idEntrevista); 
+        $datos['solicitante'] = $solicitante->getUsuarioBy('IDSOLICITANTE', $idSolicitante);
         return view('RRHH/view_agregarComentario',$datos);
     }
     
-    public function guardarComentario($idEntrevista=null){
+    public function guardarComentario($idEntrevista=null,$idSolicitante=null){
         
             $comentarioModel = new ComentariosEntrevistasModel();
-                                  
+                                              
             $data = [
                 'IDENTREVISTA' => $idEntrevista,
                 'COMENTARIOS' => $this->request->getVar('newComent')
@@ -40,6 +52,6 @@ class EntrevistaController extends BaseController{
            
             $comentarioModel->insert($data);
             print_r($data);
-            return $this->response->redirect(site_url('/AdminRH/entrevistas'));
+            return $this->response->redirect(site_url('/AdminRH/entrevistas/'.$idSolicitante));
     }
 }
