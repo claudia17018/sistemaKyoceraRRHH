@@ -13,5 +13,6 @@ class Home extends BaseController
     {
          return view('Plantilla/base');
     }
+    
 
 }

@@ -42,8 +42,9 @@
                             <input type="password" id="password" name="password" class="form-control" required="">
                         </div>
                         <div class="col-lg-12" style="padding-left: 0px !important; padding-right: 0px !important;">
-                            <button type="submit" class="btn btn-primary btn-md float-lg-right">Ingresar</button>
-                        </div>
+                            <button type="submit" class="btn btn-primary btn-md float-lg-right ">Ingresar</button>
+                        </div>                  
+                         <p>¿No tienes una cuenta? <a href="<?php echo base_url('Auth/crearCuenta'); ?>">Regístrate ahora</a></p>
                     </form>
                 </div>
             </div>
