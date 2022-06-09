@@ -20,4 +20,8 @@ class EntrevistaModel extends Model{
     public function getEntrevistaBy(String $column, $value){
         return $this->where($column,$value)->first();
     }
+    
+    public function getAllEntrevistasBy(String $column, $value){
+        return $this->where($column,$value)->findAll();
+    }
 }

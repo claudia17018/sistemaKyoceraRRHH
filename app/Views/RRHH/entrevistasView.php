@@ -126,27 +126,37 @@
     <main> 
         <?= $this->renderSection('contenido')?> 
     
-
-    <div class="container-md" >
+        <?php 
+         $sol = $solicitante['datosSolicitante'];
+         $estPro = $estadoProceso['datosEstadoProceso'];
+         $dat = $datosCand['datosCandidato'];?>
+        
+        <div class="container-md" >
         <br>
         <table class="table-borderless"> 
             <tbody>
                 <tr>    
                     <td rowspan="2">
-                        <img src="<?php echo base_url('public/assets/imagen/user.png'); ?>" width="150px" height="150px">
+                        <?php if($dat['URLFOTOCANDIDATO'] != NULL):?>
+                            <img src="<?=$dat['URLFOTOCANDIDATO'];?>" width="150px" height="150px">
+                        <?php endif;
+                         if($dat['URLFOTOCANDIDATO'] == NULL):?>
+                            <img src="<?php echo base_url('public/assets/imagen/user.png');?>" width="150px" height="150px">
+                            <?php endif;?>
                     </td>
                     <td style="width:10%;"></td>
-                    <td><h2><label>Nombre</label></h2></td>     
+                    <td><h2><label><?=$sol['PRIMERNOMBRESOLICITANTE']?> <?=$sol['SEGUNDONOMBRESOLICITANTE']?> <?=
+                                $sol['PRIMERAPELLIDOSOLICITANTE']?> <?=$sol['SEGUNDOAPELLIDOSOLICITANTE']?> </label></h2></td>     
                 </tr>
                 <tr>
                     <td></td>
-                    <td>Seleccionado
+                    <td class="col-auto">Seleccionado
                         <i class="bi-check-circle" style="color: red"></i>
                     </td>
-                    <td style="width:20%;"></td>
+                    <td class="col-auto"></td>
                     <td>Fase actual del proceso</td>
                     <td style="width:5%;"></td>
-                    <td><label> hola</label></td>
+                    <td><label><?=$estPro['ESTADOPROCESO']?></label></td>
                 </tr>
             </tbody>
         </table>
@@ -208,10 +218,10 @@
                     
                     <div class="container-fluid mb-3">
                         <p><?=$entrevista['DESCRIPCIONENTREVISTA']?></p>
-                    
+  
                         <label for="exampleFormControlTextarea1" class="form-label">Comentarios&nbsp;</label>
                         <a class="bi-plus-square-fill" style="font-size:18px;" 
-                           href="<?=base_url('AdminRH/nuevoComentario/'.$entrevista['IDENTREVISTA']);?>"></a>
+                           href="<?=base_url('AdminRH/nuevoComentario/'.$entrevista['IDENTREVISTA'].'/'.$sol['IDSOLICITANTE']);?>"></a>
                                                                 
                         <?php foreach($comentarios['datosComentario'] as $comentario): 
                             if($entrevista['IDENTREVISTA']==$comentario['IDENTREVISTA']):?>
