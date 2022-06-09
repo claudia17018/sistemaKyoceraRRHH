@@ -9,7 +9,9 @@ class UsuarioModel extends Model{
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
 
-    protected $allowedFields = ['DUI','GENEROSOLICITANTE','NIT','PRIMERAPELLIDOSOLICITANTE','PRIMERNOMBRESOLICITANTE','SEGUNDOAPELLIDOSOLICITANTE','SEGUNDONOMBRESOLICITANTE','SOLICITANTEFECHANACIMIENTO'];
+    protected $allowedFields = ['IDUSUARIO','DUI','GENEROSOLICITANTE','NIT','PRIMERAPELLIDOSOLICITANTE',
+        'PRIMERNOMBRESOLICITANTE','SEGUNDOAPELLIDOSOLICITANTE','SEGUNDONOMBRESOLICITANTE',
+        'SOLICITANTEFECHANACIMIENTO'];
     
     public function getUsuarioBy(String $column, $value){
 

@@ -41,7 +41,7 @@
               <div class="nav__list">
                 <div class="nav__items">               
                   <h3 class="nav__subtitle">Mi Perfil</h3>
-                    <a href="#" class="nav__link">
+                    <a href="#" class="nav__link active">
                       <i class="bi bi-house-door nav__icon"></i>
                       <span class="nav__name">Inicio</span>
                     </a>                 
@@ -51,107 +51,51 @@
                           <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
                       </a>  
                 </div>
-                <div class="nav__items">
-                  <h3 class="nav__subtitle">Reclutamiento</h3>         
-                      <a href="#" class="nav__link">
-                        <i class='bi bi-files nav__icon' ></i>
-                          <span class="nav__name">Vacantes</span>
-                        <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                      </a>
-               </div>
                <div class="nav__items">
-                  <h3 class="nav__subtitle">Seleccion</h3>
+                  <h3 class="nav__subtitle">Mi postulacion</h3>
                       <a href="#" class="nav__link">
                         <i class='bi bi-people nav__icon' ></i>
-                          <span class="nav__name">Candidatos</span>
+                          <span class="nav__name">Mis documentos</span>
                         <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
                       </a>
                        <a href="#" class="nav__link">
                         <i class='bi bi-calendar nav__icon' ></i>
-                          <span class="nav__name">Entrevista</span>
-                        <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                      </a>
-                      <a href="#" class="nav__link active">
-                        <i class='bi bi-check2-square nav__icon' ></i>
-                          <span class="nav__name">Seleccionados</span>
-                        <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                      </a>
-                      <a href="#" class="nav__link">
-                        <i class='bi bi-file-text nav__icon' ></i>
-                          <span class="nav__name">Plantillas</span>
+                          <span class="nav__name">Solicitud de empleo</span>
                         <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
                       </a>
                </div>
                 <div class="nav__items">
-                  <h3 class="nav__subtitle">Contratacion</h3>
+                  <h3 class="nav__subtitle">Seleccion</h3>
                    
                       <a href="#" class="nav__link">
                         <i class='bi bi-clipboard2-check nav__icon' ></i>
-                          <span class="nav__name">Contratos</span>
+                          <span class="nav__name">Pruebas</span>
                         <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
                       </a>      
                </div>
                <div class="nav__items">
-                  <h3 class="nav__subtitle">Reportes</h3>
-                    
-                      <a href="#" class="nav__link">
-                        <i class='bi bi-person-check nav__icon'></i>
-                          <span class="nav__name">Nuevos empleados</span>
-                        <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                      </a>
-                   
-                </div>
-               <div class="nav__items">
                   <h3 class="nav__subtitle">Configuracion</h3>                 
                       <a href="#" class="nav__link">
                         <i class='bi bi-person nav__icon' ></i>
-                          <span class="nav__name">Usuarios</span>
+                          <span class="nav__name">Cuenta</span>
                         <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                      </a>
-                      <a href="#" class="nav__link">
-                        <i class='bi bi-lock nav__icon' ></i>
-                          <span class="nav__name">Roles y permisos</span>
-                        <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                      </a>                   
+                      </a>                  
                 </div>
             </div>
-          </div>
-            <a href="#" class="nav__link nav__logout">
+            <a href="<?php echo base_url('Auth/Usuario/logout'); ?>" class="nav__link nav__logout">
              <i class="bi bi-box-arrow-left nav__icon" ></i>
              <span class="nav__name">Cerrar sesion</span>
             </a>
+          </div>
+            
       </nav>
     </div>
         <!--========== CONTENTS ==========-->
     <main> 
-        <?= $this->renderSection('contenido')?> 
-  
-   <div class="col-xxl-6 col-lg-10 col-md-8col-sm-12 container border pt-5 mt-5" style="background-color: white">
-        <div class="container-fluid" >
-            <h2>Nuevo comentario</h2><br>
-    </div>
-    
-    <div class="">
-    <form method="POST" action="<?=site_url('AdminRH/guardarComentario/'.$entrevista['IDENTREVISTA'].'/'.$solicitante['IDSOLICITANTE']);?>" class="" id="comentarioAgregar" name="comentarioAgregar">
-        <div class="container-md" style="padding-left: 40px; padding-right: 40px">
-           
-            <div class="mb-3">
-                <label for="newComent" class="form-label"><b><?=$entrevista['TITULOENTREVISTA']?></b></label><br><br>
-                <textarea id="newComent" name="newComent" class="form-control" rows="3" autofocus="" require=""></textarea>
-                </div>
-            <br>
-        </div>
-            <br>
-        <button class="btn btn-primary" type="submit">Guardar</button>
-    </form>
-    <br>
-    <br>
-    </div>
-   </div>
-       </main>
-        
+        <?= $this->renderSection('contenido')?>      
+    </main>
     <footer class="footer">
-    <div class="container-md" >
+    <div class="container">
     <div class="col-md-4 d-flex align-items-center">
       <span class="text-muted">&copy; 2022 Kyocera AVX</span>
     </div>
@@ -163,4 +107,3 @@
 
 </body>
 </html>
-

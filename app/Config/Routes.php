@@ -51,6 +51,11 @@ $routes->group('AdminRH',  ['namespace' => 'App\Controllers\RRHH'],function ($ro
     
 });
 
+$routes->group('User',  ['namespace' => 'App\Controllers\User'],function ($routes) {
+    $routes->get('miPerfil/(:num)', 'PerfilController::miPerfil/$1');
+    $routes->get('editar/(:num)', 'PerfilController::editarPerfil/$1');
+    $routes->post('guardar/(:num)', 'PerfilController::guardarPerfil/$1');
+});
 
 /*
  * --------------------------------------------------------------------
