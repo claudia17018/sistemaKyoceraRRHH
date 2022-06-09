@@ -43,11 +43,18 @@ $routes->group('Auth',  ['namespace' => 'App\Controllers\Auth'],function ($route
     $routes->post('guardarAspirante', 'Usuario::store');
 });
 
-$routes->group('AdminRH',  ['namespace' => 'App\Controllers\RRHH'],function ($routes) {
+$routes->group('RRHH',  ['namespace' => 'App\Controllers\RRHH'],function ($routes) {
     $routes->get('', 'Usuario::index', ['as'=> 'index'] );
     $routes->get('entrevistas', 'EntrevistaController::entrevistas');
     $routes->get('nuevoComentario/(:num)', 'EntrevistaController::nuevoComentario/$1');
     $routes->post('guardarComentario/(:num)', 'EntrevistaController::guardarComentario/$1');
+    
+});
+
+$routes->group('Solicitante',  ['namespace' => 'App\Controllers\Solicitante'],function ($routes) {
+    $routes->get('', 'Solicitante::index', ['as'=> 'index'] );
+    $routes->get('consultar/(:num)', 'Solicitante::singleSolicitante/$1');
+    $routes->get('perfil', 'Solicitante::perfil', ['as'=> 'perfil'] );
     
 });
 

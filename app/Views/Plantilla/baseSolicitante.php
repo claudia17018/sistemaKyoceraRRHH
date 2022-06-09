@@ -51,70 +51,43 @@
                           <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
                       </a>  
                 </div>
-                <div class="nav__items">
-                  <h3 class="nav__subtitle">Reclutamiento</h3>         
-                      <a href="#" class="nav__link">
-                        <i class='bi bi-files nav__icon' ></i>
-                          <span class="nav__name">Vacantes</span>
-                        <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                      </a>
-               </div>
                <div class="nav__items">
-                  <h3 class="nav__subtitle">Seleccion</h3>
+                  <h3 class="nav__subtitle">Mi postulacion</h3>
                       <a href="#" class="nav__link">
                         <i class='bi bi-people nav__icon' ></i>
-                          <span class="nav__name">Candidatos</span>
+                          <span class="nav__name">Mis documentos</span>
                         <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
                       </a>
                        <a href="#" class="nav__link">
                         <i class='bi bi-calendar nav__icon' ></i>
-                          <span class="nav__name">Entrevista</span>
-                        <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                      </a>
-                      <a href="#" class="nav__link">
-                        <i class='bi bi-file-text nav__icon' ></i>
-                          <span class="nav__name">Plantillas</span>
+                          <span class="nav__name">Solicitud de empleo</span>
                         <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
                       </a>
                </div>
                 <div class="nav__items">
-                  <h3 class="nav__subtitle">Contratacion</h3>
+                  <h3 class="nav__subtitle">Seleccion</h3>
                    
                       <a href="#" class="nav__link">
                         <i class='bi bi-clipboard2-check nav__icon' ></i>
-                          <span class="nav__name">Contratos</span>
+                          <span class="nav__name">Pruebas</span>
                         <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
                       </a>      
                </div>
                <div class="nav__items">
-                  <h3 class="nav__subtitle">Reportes</h3>
-                    
-                      <a href="#" class="nav__link">
-                        <i class='bi bi-person-check nav__icon'></i>
-                          <span class="nav__name">Nuevos empleados</span>
-                        <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                      </a>
-                   
-                </div>
-               <div class="nav__items">
                   <h3 class="nav__subtitle">Configuracion</h3>                 
                       <a href="#" class="nav__link">
                         <i class='bi bi-person nav__icon' ></i>
-                          <span class="nav__name">Usuarios</span>
+                          <span class="nav__name">Cuenta</span>
                         <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                      </a>
-                      <a href="#" class="nav__link">
-                        <i class='bi bi-lock nav__icon' ></i>
-                          <span class="nav__name">Roles y permisos</span>
-                        <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
-                      </a>                   
+                      </a>                  
                 </div>
             </div>
-          </div>
             <a href="<?php echo base_url('Auth/Usuario/logout'); ?>" class="nav__link nav__logout">
              <i class="bi bi-box-arrow-left nav__icon" ></i>
              <span class="nav__name">Cerrar sesion</span>
             </a>
+          </div>
+            
       </nav>
     </div>
         <!--========== CONTENTS ==========-->
@@ -131,6 +104,6 @@
     <script src="<?php echo base_url('public/assets/js/bootstrap.bundle.min.js'); ?>"></script>
     <!--========== MAIN JS ==========-->
     <script src="<?php echo base_url('public/assets/js/main.js'); ?>"></script>
-    <?= $this->renderSection('js')?>
+
 </body>
 </html>
