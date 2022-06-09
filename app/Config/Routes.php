@@ -35,6 +35,12 @@ $routes->get('/', 'Home::index');
 $routes->add('/plantilla', 'Home::plantilla');
 
 
+$routes->group('postular',  ['namespace' => 'App\Controllers\postulacionCandidato'],function ($routes) {
+    $routes->get('p', 'MiPostulacionController::p');
+    $routes->post('up', 'MiPostulacionController::upload');
+});
+
+
 $routes->group('Auth',  ['namespace' => 'App\Controllers\Auth'],function ($routes) {
     $routes->get('', 'Usuario::index', ['as'=> 'login'] );
     $routes->post('check', 'Usuario::signin', ['as'=> 'signin']);

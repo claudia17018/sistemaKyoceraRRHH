@@ -120,8 +120,12 @@ class Usuario extends BaseController
             $userModel->insert($data);
             $aspiranteModel->insert($data);
             print_r($data);
+
+
+
             return $this->response->redirect(site_url('/Auth'));
         }
+
 
 /*
         public function aspiranteGuardar(){
