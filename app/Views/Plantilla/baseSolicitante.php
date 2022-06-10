@@ -104,6 +104,6 @@
     <script src="<?php echo base_url('public/assets/js/bootstrap.bundle.min.js'); ?>"></script>
     <!--========== MAIN JS ==========-->
     <script src="<?php echo base_url('public/assets/js/main.js'); ?>"></script>
-
+     <?= $this->renderSection('js')?>
 </body>
 </html>
