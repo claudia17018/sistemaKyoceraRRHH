@@ -4,6 +4,8 @@ use App\Controllers\BaseController;
 use CodeIgniter\Controller;
 use App\Models\DatosModel;
 use Config\Mimes;
+use App\Models\FechPostulaModel;
+use App\Models\RefInterModel;
 
 class MiPostulacionController extends BaseController{
 
@@ -108,8 +110,34 @@ class MiPostulacionController extends BaseController{
 
         ];
         $id = $userDatos->insert($data);
+        $this->storePostulacion();
+        $this->insertReferenciaInterna();
         echo $id;
         return $this->response->redirect(site_url('postular/p'));
+    }
+    //Para insertar la pretenseion salarial
+    public function storePostulacion(){
+        $fechaPost = new FechPostulaModel();
+
+        $data = [
+            'PRETENCIONSALARIAL' => $this->request->getVar('pretensionSalarial'),
+        ];
+
+        $fechaPost->insert($data);
+
+    }
+    //Para insertar referencias internas
+    public function insertReferenciaInterna(){
+        $referencia = new RefInterModel();
+
+        $data = [
+            'NOMBREEMPLEADO' => $this->request->getVar('nombreRecomienda'),
+            'APELLIDOEMPLEADO' => $this->request->getVar('apellidoRecomienda'),
+            'TELEFONOEMPLEADO' => $this->request->getVar('telRecomienda'),
+            'BADGEEMPLEADO' => $this->request->getVar('badgefonoRecomienda'),
+        ];
+
+        $referencia->insert($data);
     }
 
     public function p(){

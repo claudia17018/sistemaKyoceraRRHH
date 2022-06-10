@@ -44,16 +44,23 @@
             <div class="md-3 row">
                 <div class="col-sm-5">
                     <label for="nombreRecomienda">Nombre del empleado que lo recomienda</label>
-                    <input type="text" name="nombreRecomienda" id="nombreRecomienda" class="form-control-file">
+                    <input type="text" name="nombreRecomienda" id="nombreRecomienda" class="form-control">
                 </div>
-                <div class="col-sm-6">
-                    <label for="badgeRecomienda">Numero de telefono del empleado que recomienda</label>
-                    <input type="text" name="badgeRecomienda" id="badgeRecomienda" class="form-control-file">
+                <div class="col-sm-5">
+                    <label for="apellidoRecomienda">Apellido del empleado que recomienda</label>
+                    <input type="text" name="apellidoRecomienda" id="apellidoRecomienda" class="form-control">
                 </div>
             </div>
-            <div class="col-sm-5">
-                <label for="telefonoRecomienda">Numero de telefono del empleado que recomienda</label>
-                <input type="text" name="telefonoRecomienda" id="telefonoRecomienda" class="form-control-file">
+            <br>
+            <div class="md-3 row">
+                <div class="col-sm-5">
+                    <label for="badgeRecomienda">Numero de Badge del empleado que recomienda</label>
+                    <input type="text" name="badgeRecomienda" id="badgefonoRecomienda" class="form-control">
+                </div>
+                <div class="col-sm-5">
+                    <label for="telRecomienda">Numero de telefono del empleado que recomienda</label>
+                    <input type="text" name="telRecomienda" id="telRecomienda" class="form-control">
+                </div>
             </div>
             </div>
             <br>
