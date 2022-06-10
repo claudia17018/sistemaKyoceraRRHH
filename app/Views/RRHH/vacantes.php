@@ -69,11 +69,12 @@
                             <a href="<?= base_url('AdminRH/crearVacantes') ?>">
                                 <button class="bi bi-eye-fill  view_icon"></button>
                             </a>
-                            <a href="<?= base_url('AdminRH/crearVacantes') ?>">
+                            <a href="<?= base_url('AdminRH/editarVacantes/'.$vacante['IDVACANTE']) ?>">
                                 <button class="bi bi-pencil-square  edit_icon"></button>
                             </a>
-
-                            <button class="bi bi-trash-fill  delete_icon"></button>
+                            <a href="<?= base_url('AdminRH/borrarVacantes/'.$vacante['IDVACANTE']); ?>">
+                                <button  class="bi bi-trash-fill  delete_icon"></button>
+                            </a>
                         </td>
 
                     </tr>

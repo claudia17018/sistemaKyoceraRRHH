@@ -62,6 +62,11 @@ class Admin extends BaseController
 
         $vacante->insert($datosVacante);
 
+
+     // $ide=mysql_insert_id($default);
+    if($numPlazas>1){
+
+    }
         $datosRequerimientosVacante=[
             'IDVACANTE'=>1,
             'EXPERIENCIALABORAL'=>$experiencia,
@@ -73,9 +78,33 @@ class Admin extends BaseController
             
         ];
         $requerimientosvacante->insert($datosRequerimientosVacante);
-
-        return view('RRHH/vacantesCrear');
+        return $this->response->redirect(site_url('AdminRH/vacantes'));
+        //return view('RRHH/vacantesCrear');
        // echo "Ingresado a la Base de datos";
       //  print_r($nombre);
+    }
+    public function vacantesBorrar($id=null)
+    {
+        $vacanteBorrar =new VacantesModel();
+        $requerimientosvacanteBorrar =new RequerimientosVacanteModel();
+       // $datosVacante=$vacanteBorrar->where('id',$id)->first(); Recupera el primer elemento
+
+        $vacanteBorrar->where('IDVACANTE',$id)->delete($id);
+
+       //$datosBorrar['borrarVacante']=$requerimientosvacanteBorrar->where('IDVACANTE',$id);
+       //$requerimientosvacanteBorrar->where('IDREQVACANTE',$datosVacante1)->delete($datosVacante1);
+       //echo $datosVacante1;
+       return $this->response->redirect(site_url('AdminRH/vacantes'));
+     
+    }
+    public function vacantesEditar($id=null)
+    {
+        $vacanteEditar =new VacantesModel();
+        $requerimientosvacanteEditar =new RequerimientosVacanteModel();
+       $datos['vacanteEditar']=$vacanteEditar->where('IDVACANTE',$id);
+       $datos['requerimientosvacanteEditar']=$requerimientosvacanteEditar->where('IDVACANTE',$id);
+
+        return view('RRHH/vacantesEditar');
+     
     }
 }

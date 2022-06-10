@@ -47,6 +47,8 @@ $routes->group('AdminRH',  ['namespace' => 'App\Controllers\RRHH'],function ($ro
     $routes->get('vacantes', 'Admin::vacantes');
     $routes->get('crearVacantes', 'Admin::vacanteCrear');
     $routes->post('guardarVacantes', 'Admin::vacantesGuardar');
+    $routes->get('borrarVacantes/(:num)', 'Admin::vacantesBorrar/$1');
+    $routes->get('editarVacantes/(:num)', 'Admin::vacantesEditar/$1');
 });
 
 
