@@ -5,10 +5,11 @@ use App\Controllers\BaseController;
 use App\Models\UserModel;
 use App\Models\CrearCuentaModel;
 use App\Models\UsuarioModel;
+use App\Models\Medioscontacto;
+use App\Models\DatosModel;
 
 use App\DataBase\query;
 
-use App\Entities\User;
 
 class Usuario extends BaseController
 {
@@ -126,22 +127,61 @@ class Usuario extends BaseController
             $query = $userModel->insert($data);
             $aspiranteModel->insert($data);
             
-            $db = db_connect();
-            echo $db->$query->getRow();
+            $this->insertarTitulo();
+            $this->insertarCorreo();
+           
             
             
-
-      
-            //$query = $db->query('SELECT IDSOLICITANTE from solicitante');
-            
-            
+            //$query = $db->query('SELECT IDSOLICITANTE from solicitante');    
           
-            $user = new User($data);
-            $userModel->addInfoUser($user);
-        
+           //return $this->response->redirect(site_url('/Auth'));
+        }
+        //Insertar titulo//
+        public function insertarTitulo(){
+            $archivo = $this->request->getFile('tituloAspirante');
 
+            if($archivo){
 
-           return $this->response->redirect(site_url('/Auth'));
+                if($archivo->isValid() && !($archivo->hasMoved())){
+                    
+                    $validated1 = $this->validate([
+                        'userFile' =>[
+                           'rules'=>'uploaded[tituloAspirante]',
+                            'mime_in[image, image/pdf]'
+                        ]
+                    ]);
+                    if($validated1){
+                        echo "ok";
+    
+                    }else{
+    
+                        var_dump($this->validator->listErrors());        
+    
+                        return false;
+                    }
+                    $newName1 = $archivo->getRandomName();
+
+                    $archivo->move(WRITEPATH.'uploads/titulos',$newName1);
+
+                    /**Enviar a la base**/
+                    $userDatos = new DatosModel();
+
+                    $data = [
+                        'URLTITULOACADEMICO' => $newName1
+                    ];
+                    $userDatos->insert($data);
+                }
+            }
+
+        }
+
+        public function insertarCorreo(){
+            $contacto = new Medioscontacto();
+            $data = [
+                'CONTACTOSOLICITANTE' => $this->request->getVar('correoAspirante'),
+            ];
+
+            $contacto->insert($data);
         }
 
 

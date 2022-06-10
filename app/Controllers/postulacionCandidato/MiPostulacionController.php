@@ -97,22 +97,24 @@ class MiPostulacionController extends BaseController{
                 $imageFile1->move(WRITEPATH.'uploads/dui',$newName1);
                 $imageFile2->move(WRITEPATH.'uploads/nit',$newName2);
                 $imageFile3->move(WRITEPATH.'uploads/curriculum',$newName3);    
+
+                $userDatos = new DatosModel();
+                $datos = $userDatos;
+        
+                $data = [
+                    'URLCV' => $newName3,
+                    'URLNIT' => $newName2,
+                    'URLDUI' => $newName1
+        
+                ];
+                $id = $userDatos->insert($data);
             }
             
         }
-        $userDatos = new DatosModel();
-        $datos = $userDatos;
 
-        $data = [
-            'URLCV' => $newName3,
-            'URLNIT' => $newName2,
-            'URLDUI' => $newName1
-
-        ];
-        $id = $userDatos->insert($data);
         $this->storePostulacion();
         $this->insertReferenciaInterna();
-        echo $id;
+        
         return $this->response->redirect(site_url('postular/p'));
     }
     //Para insertar la pretenseion salarial

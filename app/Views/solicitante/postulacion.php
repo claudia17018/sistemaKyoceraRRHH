@@ -13,11 +13,11 @@
             <div class="md-3 row">
                 <div class="col-sm-5">
                     <label for="pretensionSalarial">Pretension salarial</label>
-                    <input type="text" name="pretensionSalarial" id="pretensionSalarial"  require="true" class="form-control">
+                    <input type="text" name="pretensionSalarial" id="pretensionSalarial"  require class="form-control">
                 </div>
                 <div class="col-sm-2">
                     <label for="dui">DUI</label>
-                    <input type="file" name="dui" >
+                    <input type="file" name="dui" class="form-control">
                 </div>
                 
             </div>
@@ -26,11 +26,11 @@
             <div class="md-3 row">
                 <div class="col-sm-5">
                     <label class="" for="curriculum">Curriculum</label>
-                    <input type="file" name="curriculum" id="Curriculum" class="form-control-file">
+                    <input type="file" name="curriculum" id="Curriculum" class="form-control">
                 </div>
                 <div class="col-sm-2">
                     <label for="nit">NIT</label>
-                    <input type="file" name="nit" id="nit">
+                    <input type="file" name="nit" id="nit" class="form-control">
                 </div>
             </div>
             <br>
