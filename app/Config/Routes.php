@@ -58,6 +58,14 @@ $routes->group('Solicitante',  ['namespace' => 'App\Controllers\Solicitante'],fu
     $routes->post('guardar/(:num)', 'Solicitante::guardarPerfil/$1');
     $routes->get('consultar/(:num)', 'Solicitante::singleSolicitante/$1');
 });
+$routes->group('AdminRH',  ['namespace' => 'App\Controllers\RRHH'],function ($routes) {
+    $routes->get('', 'Admin::index', ['as'=> 'index'] );
+    $routes->get('vacantes', 'Admin::vacantes');
+    $routes->get('crearVacantes', 'Admin::vacanteCrear');
+    $routes->post('guardarVacantes', 'Admin::vacantesGuardar');
+    $routes->get('borrarVacantes/(:num)', 'Admin::vacantesBorrar/$1');
+    $routes->get('editarVacantes/(:num)', 'Admin::vacantesEditar/$1');
+});
 
 
 /*
