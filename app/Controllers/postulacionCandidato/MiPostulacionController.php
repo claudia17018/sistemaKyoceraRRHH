@@ -109,7 +109,7 @@ class MiPostulacionController extends BaseController{
         ];
         $id = $userDatos->insert($data);
         echo $id;
-        return true;
+        return $this->response->redirect(site_url('postular/p'));
     }
 
     public function p(){

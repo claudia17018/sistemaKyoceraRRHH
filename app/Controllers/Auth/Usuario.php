@@ -6,8 +6,13 @@ use App\Models\UserModel;
 use App\Models\CrearCuentaModel;
 use App\Models\UsuarioModel;
 
+use App\DataBase\query;
+
+use App\Entities\User;
+
 class Usuario extends BaseController
 {
+
     public function index()
     {
         if(!session()->logged_in){ 
@@ -116,14 +121,27 @@ class Usuario extends BaseController
                 'SOLICITANTEFECHANACIMIENTO' => $this->request->getVar('fechaNacimiento'),
                 'GENEROSOLICITANTE' => $this->request->getVar('genero'),
             ];
-           
-            $userModel->insert($data);
+            
+             
+            $query = $userModel->insert($data);
             $aspiranteModel->insert($data);
-            print_r($data);
+            
+            $db = db_connect();
+            echo $db->$query->getRow();
+            
+            
+
+      
+            //$query = $db->query('SELECT IDSOLICITANTE from solicitante');
+            
+            
+          
+            $user = new User($data);
+            $userModel->addInfoUser($user);
+        
 
 
-
-            return $this->response->redirect(site_url('/Auth'));
+           return $this->response->redirect(site_url('/Auth'));
         }
 
 

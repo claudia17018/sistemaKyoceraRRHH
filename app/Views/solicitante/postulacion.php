@@ -3,53 +3,74 @@
 <?= $this->section('contenido') ?>
 
 <body class="m-0 vh-100 row justify-content-center align-items-center">
+    <div class="col-xxl-10 col-lg-6 col-md-8col-sm-12 container border pt-5 mt-5">
     <div>
         <h2>Mi postulacion</h2>
     </div>
     <br>
     <div class="">
-        <form  method="POST" enctype="multipart/form-data" action="<?= site_url('postular/up')?>">
-            <div class="">
-                <div class="">
+        <form name="registro" method="POST" enctype="multipart/form-data" action="<?= site_url('postular/up')?>">
+            <div class="md-3 row">
+                <div class="col-sm-5">
                     <label for="pretensionSalarial">Pretension salarial</label>
-                    <input type="text" name="pretensionSalarial" id="pretensionSalarial">
+                    <input type="text" name="pretensionSalarial" id="pretensionSalarial"  require="true" class="form-control">
                 </div>
-                <div class="mt-2">
+                <div class="col-sm-2">
                     <label for="dui">DUI</label>
                     <input type="file" name="dui" >
                 </div>
                 
             </div>
+            <br>
                
-            <div class="mt-2">
-                <label class="" for="curriculum">Curriculum</label>
-                <input type="file" name="curriculum" id="Curriculum">
-
-                <label for="nit">NIT</label>
-                <input type="file" name="nit" id="nit">
+            <div class="md-3 row">
+                <div class="col-sm-5">
+                    <label class="" for="curriculum">Curriculum</label>
+                    <input type="file" name="curriculum" id="Curriculum" class="form-control-file">
+                </div>
+                <div class="col-sm-2">
+                    <label for="nit">NIT</label>
+                    <input type="file" name="nit" id="nit">
+                </div>
             </div>
-            <div class="mt-2">
-                <label for="recomendado">Recomendado por empleado de AVX</label>
-                    <input id="si" name="recomendado" type="radio">Si   
-                    <input id="no" name="recomendado" type="radio">No    
-                
-            </div>
+            <br>
             <div class="">
-                <label for="nombreRecomienda">Nombre del empleado que lo recomienda</label>
-                <input type="text" name="nombreRecomienda" id="nombreRecomienda">
-
-                <label for="badgeRecomienda">Numero de telefono del empleado que recomienda</label>
-                <input type="text" name="badgeRecomienda" id="badgeRecomienda">
+                <label for="">Recomendado por empleado de AVX</label>
+                    <input class ="" id="si" name="recomendado" value="si" type="radio" checked="true" onclick="recomendado()">Si   
+                    <input id="no" name="recomendado" value="no" type="radio" onclick="recomendado()">No    
             </div>
-            <div class="">
+            <br>
+            <div id="datosRecomendado" style="display:block">
+            <div class="md-3 row">
+                <div class="col-sm-5">
+                    <label for="nombreRecomienda">Nombre del empleado que lo recomienda</label>
+                    <input type="text" name="nombreRecomienda" id="nombreRecomienda" class="form-control-file">
+                </div>
+                <div class="col-sm-6">
+                    <label for="badgeRecomienda">Numero de telefono del empleado que recomienda</label>
+                    <input type="text" name="badgeRecomienda" id="badgeRecomienda" class="form-control-file">
+                </div>
+            </div>
+            <div class="col-sm-5">
                 <label for="telefonoRecomienda">Numero de telefono del empleado que recomienda</label>
-                <input type="text" name="telefonoRecomienda" id="telefonoRecomienda">
+                <input type="text" name="telefonoRecomienda" id="telefonoRecomienda" class="form-control-file">
             </div>
-
+            </div>
+            <br>
             <div>
                 <button class="btn btn-primary" type="submit">Postularme</button>
             </div>
         </form>
+    </div>
+    <script>
+            function recomendado(){
+                if(document.registro.recomendado[0].checked == false){
+                    document.getElementById('datosRecomendado').style.display='none';
+                }else{
+                    document.getElementById('datosRecomendado').style.display='block';
+                }         
+            }
+    </script>
     </div>
 </body>    
 
