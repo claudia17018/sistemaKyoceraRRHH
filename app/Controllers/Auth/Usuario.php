@@ -126,20 +126,12 @@ class Usuario extends BaseController
             $query = $userModel->insert($data);
             $aspiranteModel->insert($data);
             
-            $db = db_connect();
-            echo $db->$query->getRow();
-            
-            
-
-      
             //$query = $db->query('SELECT IDSOLICITANTE from solicitante');
             
             
           
             $user = new User($data);
             $userModel->addInfoUser($user);
-        
-
 
            return $this->response->redirect(site_url('/Auth'));
         }

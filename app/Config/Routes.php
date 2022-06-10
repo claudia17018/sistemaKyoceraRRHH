@@ -36,7 +36,7 @@ $routes->add('/plantilla', 'Home::plantilla');
 
 
 $routes->group('postular',  ['namespace' => 'App\Controllers\postulacionCandidato'],function ($routes) {
-    $routes->get('p', 'MiPostulacionController::p');
+    $routes->get('', 'MiPostulacionController::postulacion', ['as'=> 'postularme'] );
     $routes->post('up', 'MiPostulacionController::upload');
 });
 
