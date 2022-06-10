@@ -41,11 +41,11 @@
               <div class="nav__list">
                 <div class="nav__items">               
                   <h3 class="nav__subtitle">Mi Perfil</h3>
-                    <a href="#" class="nav__link active">
+                    <a href="<?php echo base_url('Solicitante/Solicitante/index'); ?>" class="nav__link active">
                       <i class="bi bi-house-door nav__icon"></i>
                       <span class="nav__name">Inicio</span>
                     </a>                 
-                      <a href="#" class="nav__link">
+                      <a href="<?php echo base_url('Solicitante/Solicitante/perfil'); ?>" class="nav__link">
                           <i class='bi bi-person-circle nav__icon'></i>
                             <span class="nav__name">Perfil</span>
                           <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>

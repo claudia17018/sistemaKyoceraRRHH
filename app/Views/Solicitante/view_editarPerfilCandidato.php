@@ -92,7 +92,7 @@
         <!--========== CONTENTS ==========-->
     <main> 
         <?= $this->renderSection('contenido')?>      
-        <?php echo $fecha;?>
+       
         <h2 class= "pt-3" style="padding-left: 3%;  color: darkblue;">Mi Perfil</h2>
         <div class="container border pt-4 mt-4" style="background-color: white; padding-left: 3%;">
         <div class="container-fluid" >

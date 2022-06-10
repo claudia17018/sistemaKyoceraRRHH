@@ -19,7 +19,7 @@ class EntrevistaController extends BaseController{
           
         $datosEntrevista['datosEntrevista'] = $entrevista->orderBy('IDENTREVISTA','ASC')->getAllEntrevistasBy('IDSOLICITANTE',$idSolicitante);
         $datosComentario['datosComentario'] = $comentario->orderBy('IDCOMENTARIOENTREVISTA','ASC')->findAll();
-        $datosSolicitante['datosSolicitante'] = $solicitante->getUsuarioBy('IDSOLICITANTE', $idSolicitante);    
+        $datosSolicitante['datosSolicitante'] = $solicitante->getSolicitanteBy('IDSOLICITANTE', $idSolicitante);    
         $datosCandidato['datosCandidato'] = $datosCan->getDatosBy('IDSOLICITANTE', $idSolicitante);
         $datosEstadoProceso['datosEstadoProceso'] = $estadoProceso->getEstadoProcesoBy('IDSOLICITANTE', $idSolicitante);
         
@@ -37,7 +37,7 @@ class EntrevistaController extends BaseController{
         $entrevista = new EntrevistaModel();
         $solicitante = new UsuarioModel();
         $datos['entrevista'] = $entrevista->getEntrevistaBy('IDENTREVISTA', $idEntrevista); 
-        $datos['solicitante'] = $solicitante->getUsuarioBy('IDSOLICITANTE', $idSolicitante);
+        $datos['solicitante'] = $solicitante->getSolicitanteBy('IDSOLICITANTE', $idSolicitante);
         return view('RRHH/view_agregarComentario',$datos);
     }
     
