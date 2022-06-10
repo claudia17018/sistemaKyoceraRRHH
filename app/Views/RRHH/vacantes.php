@@ -60,20 +60,24 @@
                 <?php $contador = 1;
                 foreach ($vacantes as $vacante) : ?>
 
+
+
                     <tr class="table__tr">
+
                         <td><?= $contador; ?></td>
                         <td><?= $vacante['CREATED_AT'] ?></td>
                         <td class="text-start"><?= $vacante['NOMBREVACANTE'] ?></td>
-                        <td><?= $vacante['NUMEROVACANTES'] ?></td>
+                        <td> <a href="<?= base_url('AdminRH/verVacantes') ?>"><?= $vacante['NUMEROVACANTES'] ?> </a></td>
+
                         <td>
-                            <a href="<?= base_url('AdminRH/crearVacantes') ?>">
+                            <a href="<?= base_url('AdminRH/verVacantes') ?>">
                                 <button class="bi bi-eye-fill  view_icon"></button>
                             </a>
-                            <a href="<?= base_url('AdminRH/editarVacantes/'.$vacante['IDVACANTE']) ?>">
+                            <a href="<?= base_url('AdminRH/editarVacantes/' . $vacante['IDVACANTE']) ?>">
                                 <button class="bi bi-pencil-square  edit_icon"></button>
                             </a>
-                            <a href="<?= base_url('AdminRH/borrarVacantes/'.$vacante['IDVACANTE']); ?>">
-                                <button  class="bi bi-trash-fill  delete_icon"></button>
+                            <a href="<?= base_url('AdminRH/borrarVacantes/' . $vacante['IDVACANTE']); ?>">
+                                <button class="bi bi-trash-fill  delete_icon"></button>
                             </a>
                         </td>
 

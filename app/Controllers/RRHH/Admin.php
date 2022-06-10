@@ -27,15 +27,13 @@ class Admin extends BaseController
     }
     public function vacanteCrear()
     {
-      // $vacantes =new VacantesModel();
-       // $datos['vacantes']= $vacantes->orderBy('IDVACANTE','ASC')->findAll();
-
+    
         return view('RRHH/vacantesCrear');
     }
     public function vacantesGuardar(){
         $vacante =new VacantesModel();
         $requerimientosvacante =new RequerimientosVacanteModel();
-
+        
 
         $nombre= $this->request->getVar('nombreVC');
         $descripcion= $this->request->getVar('descripcionVC');
@@ -46,6 +44,8 @@ class Admin extends BaseController
         $genero= $this->request->getVar('generoVC');
         $salario= $this->request->getVar('salarioVC');
         $tipContatacion= $this->request->getVar('tipContatacionVC');
+        $edadMin= $this->request->getVar('edadMinVC');
+        $edadMax= $this->request->getVar('edadMaxVC');
         
         $datosVacante=[
             'CREATED_AT'=>date("y-m-d"),
@@ -59,41 +59,47 @@ class Admin extends BaseController
             'IDPERSONALRECURSOSHUMANOS'=>1,
             'UPDATED_AT'=>date("y-m-d")
         ];
+        
+
 
         $vacante->insert($datosVacante);
 
 
-     // $ide=mysql_insert_id($default);
-    if($numPlazas>1){
+        $i=-100;
+        $cont=0;
+        $vacanteActualizado =new VacantesModel();
+        $idVacante=$vacanteActualizado->select('IDVACANTE')->find();
+        foreach($idVacante as $vac){
+          
+            if($i<$idVacante[$cont]['IDVACANTE']){
+                $i=$idVacante[$cont]['IDVACANTE'];
+            }
+            $cont++;
+        }
 
-    }
+ 
         $datosRequerimientosVacante=[
-            'IDVACANTE'=>1,
+            'IDVACANTE'=>$i,
             'EXPERIENCIALABORAL'=>$experiencia,
             'NIVEL_ESTUDIO'=>$nivEstudio,
             'GENEROCANDIDATO'=>$genero,
             'NUMEROVACANTES'=>$numPlazas,
-            'EDADMINIMAREQUERIDA'=>$tipContatacion,
-            'EDADMAXIMAREQUERIDA'=>"Activo",
+            'EDADMINIMAREQUERIDA'=>$edadMin,
+            'EDADMAXIMAREQUERIDA'=>$edadMax
             
         ];
         $requerimientosvacante->insert($datosRequerimientosVacante);
         return $this->response->redirect(site_url('AdminRH/vacantes'));
-        //return view('RRHH/vacantesCrear');
-       // echo "Ingresado a la Base de datos";
-      //  print_r($nombre);
+      
     }
     public function vacantesBorrar($id=null)
     {
         $vacanteBorrar =new VacantesModel();
         $requerimientosvacanteBorrar =new RequerimientosVacanteModel();
-       // $datosVacante=$vacanteBorrar->where('id',$id)->first(); Recupera el primer elemento
-
         $vacanteBorrar->where('IDVACANTE',$id)->delete($id);
+        $idBorrar=$requerimientosvacanteBorrar->where('IDVACANTE',$id)->select('IDREQVACANTE')->find();
+        $requerimientosvacanteBorrar->where('IDVACANTE',$id)->delete($idBorrar[0]['IDREQVACANTE']);
 
-       //$datosBorrar['borrarVacante']=$requerimientosvacanteBorrar->where('IDVACANTE',$id);
-       //$requerimientosvacanteBorrar->where('IDREQVACANTE',$datosVacante1)->delete($datosVacante1);
-       //echo $datosVacante1;
        return $this->response->redirect(site_url('AdminRH/vacantes'));
      
     }
@@ -101,10 +107,17 @@ class Admin extends BaseController
     {
         $vacanteEditar =new VacantesModel();
         $requerimientosvacanteEditar =new RequerimientosVacanteModel();
-       $datos['vacanteEditar']=$vacanteEditar->where('IDVACANTE',$id);
-       $datos['requerimientosvacanteEditar']=$requerimientosvacanteEditar->where('IDVACANTE',$id);
 
-        return view('RRHH/vacantesEditar');
+
+       $datosEditarV['vacanteEditar']=$vacanteEditar->where('IDVACANTE',$id)->first();
+       
+       $datosEditarV['requerimientosvacanteEditar']=$requerimientosvacanteEditar->where('IDVACANTE',$id)->first();
+
+        return view('RRHH/vacantesEditar',$datosEditarV);
      
+    }
+    public function vacanteVer()
+    {
+       
     }
 }
