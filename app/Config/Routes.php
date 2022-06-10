@@ -45,6 +45,8 @@ $routes->group('Auth',  ['namespace' => 'App\Controllers\Auth'],function ($route
 $routes->group('AdminRH',  ['namespace' => 'App\Controllers\RRHH'],function ($routes) {
     $routes->get('', 'Admin::index', ['as'=> 'index'] );
     $routes->get('vacantes', 'Admin::vacantes');
+    $routes->get('crearVacantes', 'Admin::vacanteCrear');
+    $routes->post('guardarVacantes', 'Admin::vacantesGuardar');
 });
 
 

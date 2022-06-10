@@ -8,5 +8,5 @@ class VacantesModel extends Model{
     // Uncomment below if you want add primary key
     // protected $primaryKey = 'id';
     protected $primaryKey = 'IDVACANTE';
-    protected $allowedFields = ['NOMBREVACANTE','NUMEROVACANTES	','CREATED_AT'];
+    protected $allowedFields = ['CREATED_AT','DESCRIPCIONVACANTE','ESTADOVACANTE','IDAREA','IDPERSONALRECURSOSHUMANOS','NOMBREVACANTE','NUMEROVACANTES','REQUERIMIENTOSPROPIOSVACANTE','UPDATED_AT'];
 }

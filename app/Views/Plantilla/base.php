@@ -14,6 +14,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/assets/css/bootstrap-icons/bootstrap-icons.css'); ?>">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/assets/css/index.css'); ?>">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/assets/css/vacantes.css'); ?>">
+ 
     <title><?= $this->renderSection('titulo')?></title>
 </head>
 <body>
@@ -54,7 +55,7 @@
                 </div>
                 <div class="nav__items">
                   <h3 class="nav__subtitle">Reclutamiento</h3>         
-                      <a href="#" class="nav__link">
+                      <a href="<?=base_url('AdminRH/vacantes')?>" class="nav__link">
                         <i class='bi bi-files nav__icon' ></i>
                           <span class="nav__name">Vacantes</span>
                         <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>

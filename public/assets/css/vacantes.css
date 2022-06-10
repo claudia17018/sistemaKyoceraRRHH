@@ -89,7 +89,8 @@
 /**************** icons  ************************************/
 
 .delete_icon{
-background-color:darkred;
+background-color:#DC0424;
+;
 
 color: aliceblue;
 width:24px ;
@@ -99,7 +100,7 @@ border: 0px;
 
 }
 .edit_icon{
-    background-color: darkorange;
+    background-color: #FFCA2C;
     
     color: aliceblue;
     width:24px ;
@@ -109,7 +110,7 @@ border: 0px;
     
     }
 .view_icon{
-    background-color: rgb(35, 144, 240);
+    background-color:#04A4E3;
     
     color: aliceblue;
     width:24px ;
