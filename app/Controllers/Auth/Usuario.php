@@ -55,8 +55,12 @@ class Usuario extends BaseController
                 ];
 
                 $session -> set($ses_data);
-
-                return view('RRHH/index');
+                if($session->rol==1){
+                    return view('RRHH/index');
+                }else{
+                    return view('Plantilla/baseSolicitante');
+                }
+               
                 
             }else{
                 return redirect()->back()

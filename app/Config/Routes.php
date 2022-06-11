@@ -88,7 +88,7 @@ $routes->group('AdminRH',  ['namespace' => 'App\Controllers\RRHH'],function ($ro
     $routes->get('verVacantes/(:num)', 'Admin::vacanteVer/$1');
     $routes->post('actualizarVacantes', 'Admin::vacantesActualizar');
     $routes->get('postulantesVacantes/(:num)', 'Admin::vacantesPostulantes/$1');
-    $routes->post('prueba', 'Admin::prueba');
+    $routes->get('prueba/(:num)', 'Admin::prueba/$1');
     $routes->get('estadoVacantes/(:num)', 'Admin::vacantesEstado/$1');
     
 });
