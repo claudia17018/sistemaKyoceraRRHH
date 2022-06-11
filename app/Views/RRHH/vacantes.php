@@ -12,13 +12,22 @@
         </div>
 
     </div>
+    <?php $c_activos = 0;
+    $c_inactivos=0;
+    foreach ($vacantes as $vacante){
+        if($vacante['ESTADOVACANTE']=="Activo"){
+            $c_activos++;
+        }else{
+            $c_inactivos++;
+        }
+        } ?>
 
     <div class="row mb-3">
         <div class="col-md-2">
-            <label>Activas 10</label>
+            <label>Activas <?=$c_activos?></label>
         </div>
         <div class="col-md-5">
-            <label>Inactivas 1</label>
+            <label>Inactivas <?=$c_inactivos?></label>
         </div>
     </div>
 
@@ -29,15 +38,19 @@
             </a>
         </div>
         <div class="col-md-8">
-            <div class="header2__search">
-                <input type="search" class="header2__input">
-                <i class="bi bi-search"></i>
-            </div>
+            <form action="" method="post" class="form">
+                <div class="header2__search">
+
+                    <input type="search" class="header2__input" name="busqueda">
+                    <i class="bi bi-search"></i>
+
+                </div>
+            </form>
         </div>
 
         <div class="col-md-2 justify-content-end">
 
-            <button class="btn btn-primary button__primary" type="submit"><i class="bi bi-filter"></i> Filtrar</button>
+            <button class="btn btn-primary button__primary" type="submit"><i class="bi bi-filter"></i> Ordenar</button>
 
         </div>
     </div>
@@ -62,16 +75,17 @@
 
 
 
-                    <tr class="table__tr">
+                    <tr class="table__tr ">
 
                         <td><?= $contador; ?></td>
                         <td><?= $vacante['CREATED_AT'] ?></td>
                         <td class="text-start">
-                            <a class="text-break" href="<?= base_url('AdminRH/verVacantes') ?>"><?= $vacante['NOMBREVACANTE'] ?></a></td>
+                            <a class="text-break" href="<?= base_url('AdminRH/postulantesVacantes/' . $vacante['IDVACANTE']) ?>"><?= $vacante['NOMBREVACANTE'] ?></a>
+                        </td>
                         <td><?= $vacante['NUMEROVACANTES'] ?> </td>
 
                         <td>
-                            <a href="<?= base_url('AdminRH/verVacantes/'. $vacante['IDVACANTE']) ?>">
+                            <a href="<?= base_url('AdminRH/verVacantes/' . $vacante['IDVACANTE']) ?>">
                                 <button class="bi bi-eye-fill  view_icon"></button>
                             </a>
                             <a href="<?= base_url('AdminRH/editarVacantes/' . $vacante['IDVACANTE']) ?>">
@@ -79,6 +93,9 @@
                             </a>
                             <a href="<?= base_url('AdminRH/borrarVacantes/' . $vacante['IDVACANTE']); ?>">
                                 <button class="bi bi-trash-fill  delete_icon"></button>
+                            </a>
+                            <a href="<?= base_url('AdminRH/estadoVacantes/' . $vacante['IDVACANTE']); ?>">
+                                <button title="<?= $vacante['ESTADOVACANTE'] ?>" class="bi bi-check-circle  view_<?= $vacante['ESTADOVACANTE'] ?>"></button>
                             </a>
                         </td>
 

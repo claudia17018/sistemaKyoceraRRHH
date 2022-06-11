@@ -120,10 +120,39 @@ border: 0px;
     
     }
 
+  .view_Activo{
+      background-color:#65f181;
+      
+      color: aliceblue;
+      width:24px ;
+      height: 24px;
+      margin: 5px;
+      border: 0px;
+      
+ }
+ .view_Inactivo{
+  background-color:#ed8d0f;
+  
+  color: aliceblue;
+  width:24px ;
+  height: 24px;
+  margin: 5px;
+  border: 0px;
+  
+}
+  
+
 .estilo_text{
   font-family:'Poppins',sans-serif;
   color: #58555E;
   font-size: 15.008px;
+}
+.Inactivo{
+  
+background-color: #d26969;
+}
+.Activo{
+  background-color: #ffff;
 }
 
 
