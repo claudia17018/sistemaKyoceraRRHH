@@ -8,6 +8,7 @@ body{
     background-color:#e9ecef;
 }
 
+
 .indexCss {
     padding: 30px 20px;
     background: #efefef;
@@ -20,4 +21,10 @@ body{
 .indexCss button[type=submit] {
     margin-top: 10px;
     margin-right: 0px;
+    margin-bottom: 10px;
+}
+
+
+.indexCss a{
+text-decoration: none;
 }

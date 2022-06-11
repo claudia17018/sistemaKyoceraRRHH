@@ -60,7 +60,7 @@ class EntrevistaController extends BaseController{
         ];
            
         $comentarioModel->insert($data);
-        return $this->response->redirect(site_url('/AdminRH/entrevistas/'.$idSolicitante));
+        return $this->response->redirect(site_url('/RRHH/entrevistas/'.$idSolicitante));
     }
     
     public function nuevaEntrevista($idSolicitante=null){
@@ -108,7 +108,7 @@ class EntrevistaController extends BaseController{
         ];
           
         $entrevistaModel->insert($data);
-        return $this->response->redirect(site_url('/AdminRH/entrevistas/'.$idSolicitante));
+        return $this->response->redirect(site_url('/RRHH/entrevistas/'.$idSolicitante));
     }
     
     public function editarEntrevista($idEntrevista=null,$idSolicitante=null){
@@ -158,7 +158,7 @@ class EntrevistaController extends BaseController{
         ];
            
         $entrevistaModel->update($idEntrevista,$data);
-        return $this->response->redirect(site_url('/AdminRH/entrevistas/'.$idSolicitante));
+        return $this->response->redirect(site_url('/RRHH/entrevistas/'.$idSolicitante));
     }
     
     public function eliminarEntrevista($idEntrevista=null, $idSolicitante = null){
@@ -168,6 +168,6 @@ class EntrevistaController extends BaseController{
         
         $comentarioModel->where('IDENTREVISTA', $idEntrevista)->delete();
         $entrevistaModel->delete($idEntrevista);
-        return $this->response->redirect(site_url('/AdminRH/entrevistas/'.$idSolicitante));
+        return $this->response->redirect(site_url('/RRHH/entrevistas/'.$idSolicitante));
     }
 }

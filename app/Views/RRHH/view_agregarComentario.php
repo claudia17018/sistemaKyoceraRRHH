@@ -9,7 +9,7 @@
     </div>
     
     <div class="">
-    <form method="POST" action="<?=site_url('AdminRH/guardarComentario/'.$entrevista['IDENTREVISTA'].'/'.$solicitante['IDSOLICITANTE']);?>" class="" id="comentarioAgregar" name="comentarioAgregar">
+    <form method="POST" action="<?=site_url('RRHH/guardarComentario/'.$entrevista['IDENTREVISTA'].'/'.$solicitante['IDSOLICITANTE']);?>" class="" id="comentarioAgregar" name="comentarioAgregar">
         <div class="container-md" style="padding-left: 40px; padding-right: 40px">
            
             <div class="mb-3">

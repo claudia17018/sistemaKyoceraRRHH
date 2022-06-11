@@ -2,14 +2,14 @@
 <?= $this->section('titulo') ?><?= $this->endSection() ?>
 <main> 
     <?= $this->section('contenido')?>   
-    <?php print_r($data)?>
+    
     <div class="col-xxl-6 col-lg-6 col-md-8 col-sm-12 container border pt-4 mt-5" style="background-color: white">
     <div class="container-fluid" >
         <h2>Editar Entrevista</h2><br>
     </div>
     
     <div class="">
-    <form method="POST" action="<?=site_url('AdminRH/guardarEntrevista/'.$datosEntrevista['IDENTREVISTA'].'/'.$datosPersonalRRHH['IDPERSONALRECURSOSHUMANOS'].'/'.$datosSolicitante['IDSOLICITANTE']);?>" 
+    <form method="POST" action="<?=site_url('RRHH/guardarEntrevista/'.$datosEntrevista['IDENTREVISTA'].'/'.$datosPersonalRRHH['IDPERSONALRECURSOSHUMANOS'].'/'.$datosSolicitante['IDSOLICITANTE']);?>" 
           class="" id="editarEntrevista" name="editarEntrevista">
         <div class="container-md" style="padding-left: 5%; padding-right: 5%">
             <div class="mb-3">

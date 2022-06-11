@@ -10,8 +10,13 @@ class Usuario extends BaseController
 {
     public function index()
     {
-        helper(['form']);
-        return view('Auth/login');
+        if(!session()->logged_in){ 
+            helper(['form']);
+             return view('Auth/login');
+        }else{
+             return view('RRHH/index');
+        }
+       
     }
 
     public function signin(){
@@ -27,29 +32,41 @@ class Usuario extends BaseController
         $session = session();
         $usuario = trim($this->request->getVar('username'));
         $contrasena = trim($this->request->getVar('password'));
-        $model = model('UserModel');
 
-        if(!$user = $model->getUserBy('NOMBREUSUARIO',$usuario)){
-             return redirect()->back()
-                ->with('msg',"Usuario no existe");
-        }
-        
-        $ses_data = [
+        $model = new UserModel();
+        $user = $model->getUserBy('NOMBREUSUARIO',$usuario);
+
+        if($user){
+             $pass= $user['CONTRASENA'];
+             $authenticatePassword = password_verify($contrasena, $pass);
+
+            if($authenticatePassword){
+                 $ses_data = [
                     'id' => $user['IDUSUARIO'],
                     'usuario' => $user['NOMBREUSUARIO'],
                     'rol' => $user['IDROL'],
                     'logged_in' => TRUE
                 ];
 
-        $session -> set($ses_data);
+                $session -> set($ses_data);
 
-        return view('RRHH/index');
+                return view('RRHH/index');
+                
+            }else{
+                return redirect()->back()
+                ->with('msg',"Credenciales incorrectas");
+            }
+        }else{
+                 return redirect()->back()
+                ->with('msg',"Usuario no existe");
+            }      
     }
+
     public function logout()
     {
         $session = session();
         $session->destroy();
-        return redirect()->to('Auth/login');
+        return redirect()->to('Auth/');
     }
 
     /********CREAR CUENTA*******************/

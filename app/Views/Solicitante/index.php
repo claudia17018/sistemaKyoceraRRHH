@@ -1,5 +1,5 @@
-<?= $this->extend('Plantilla/base') ?>
+<?= $this->extend('Plantilla/baseSolicitante') ?>
 <?= $this->section('titulo') ?>Entrevista<?= $this->endSection() ?>
 <?= $this->section('contenido') ?>
-    <h1>Bienvenido!</h1>
+   
 <?= $this->endSection() ?>
