@@ -4,6 +4,7 @@ namespace App\Controllers\Solicitante;
 use App\Controllers\BaseController;
 use App\Models\EstadoPostulanteModel;
 use App\Models\UsuarioModel;
+use App\Models\VacantesModel;
 
 
 class Solicitante extends BaseController
@@ -68,4 +69,30 @@ class Solicitante extends BaseController
         $data['estado']= $modelPostulante->findAll();
          return view('Solicitante/perfilCandidato', $data);
      } 
+
+     public function vacanteDisponible(){
+        $vacantes = new VacantesModel();
+        $datos = $vacantes->listarVacantes();
+
+        $data = [
+            "datos" => $datos
+        ];
+
+         return view('Solicitante/vacanteDisponible', $data);
+     }
+
+    public function mostraVacantes(){
+        $vacantes = new VacantesModel();
+        $datos = $vacantes->listarVacantes();
+
+        $data = [
+            "datos" => $datos
+        ];
+
+        return view('vacanteDisponible', $data);
+
+    }
+    public function filtrarVacante(){
+        
+    }
 }
