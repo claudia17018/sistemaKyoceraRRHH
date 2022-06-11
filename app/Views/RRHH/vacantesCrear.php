@@ -15,13 +15,14 @@
                 </div>
                 <div class="mb-3">
                     <label for="descripcionVC" class="form-label">Descripción*</label>
-                    <input type="text" name="descripcionVC" id="descripcionVC" class="form-control" placeholder="" aria-describedby="helpId" required>
+                   <!-- <input type="text"  name="descripcionVC" id="descripcionVC" class="form-control" placeholder="" aria-describedby="helpId" required>-->
                     <!-- <small id="helpId" class="text-muted">Aqui debe colocar su nombre</small>-->
+                    <textarea  cols="40" rows="5" type="text"  name="descripcionVC" id="descripcionVC" class="form-control" placeholder="" aria-describedby="helpId" required></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="requerimientosVC" class="form-label">Requerimientos*</label>
-                    <input type="text" name="requerimientosVC" id="requerimientosVC" class="form-control" placeholder="" aria-describedby="helpId" required>
-                    <!-- <small id="helpId" class="text-muted">Aqui debe colocar su nombre</small>-->
+                   <!-- <input type="text" name="requerimientosVC" id="requerimientosVC" class="form-control" placeholder="" aria-describedby="helpId" required>-->
+                    <textarea  cols="40" rows="5" type="text" name="requerimientosVC" id="requerimientosVC" class="form-control" placeholder="" aria-describedby="helpId" required></textarea>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">

@@ -50,7 +50,7 @@
                 <tr>
                     <th scope="col prueba" class="col-md-1">#</th>
                     <th scope="col" class="col-md-2">Fecha de creación</th>
-                    <th scope="col" class="col-md-4 ">Vacante</th>
+                    <th scope="col" class="col-md-4 overflow-auto">Vacante</th>
                     <th scope="col" class="col-md-2">Plazas</th>
                     <th scope="col" class="col-md-2">Acciones</th>
                 </tr>
@@ -66,7 +66,8 @@
 
                         <td><?= $contador; ?></td>
                         <td><?= $vacante['CREATED_AT'] ?></td>
-                        <td class="text-start"><a href="<?= base_url('AdminRH/verVacantes') ?>"><?= $vacante['NOMBREVACANTE'] ?></a></td>
+                        <td class="text-start">
+                            <a class="text-break" href="<?= base_url('AdminRH/verVacantes') ?>"><?= $vacante['NOMBREVACANTE'] ?></a></td>
                         <td><?= $vacante['NUMEROVACANTES'] ?> </td>
 
                         <td>
