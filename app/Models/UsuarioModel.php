@@ -9,12 +9,15 @@ class UsuarioModel extends Model{
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
 
-    protected $allowedFields = ['IDUSUARIO','DUI','GENEROSOLICITANTE','NIT','PRIMERAPELLIDOSOLICITANTE',
-        'PRIMERNOMBRESOLICITANTE','SEGUNDOAPELLIDOSOLICITANTE','SEGUNDONOMBRESOLICITANTE',
-        'SOLICITANTEFECHANACIMIENTO'];
+    protected $allowedFields = ['DUI','IDUSUARIO','GENEROSOLICITANTE','NIT','PRIMERAPELLIDOSOLICITANTE','PRIMERNOMBRESOLICITANTE','SEGUNDOAPELLIDOSOLICITANTE','SEGUNDONOMBRESOLICITANTE','SOLICITANTEFECHANACIMIENTO', 'UPDATED_AT'];
     
-    public function getUsuarioBy(String $column, $value){
+    public function getSolicitanteBy(String $column, $value){
 
     return $this->where($column,$value)->first();
+    }
+    
+    public function getSolicitanteByIdUser(String $idusuario,$id){
+         $solicitante = $this->where($idusuario,$id)->first();
+        return $solicitante;
     }
 }
