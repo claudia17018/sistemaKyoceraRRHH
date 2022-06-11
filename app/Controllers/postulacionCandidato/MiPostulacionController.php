@@ -1,75 +1,53 @@
 <?php 
 namespace App\Controllers\postulacionCandidato;
 use App\Controllers\BaseController;
-use CodeIgniter\Controller;
+use App\Models\UsuarioModel;
 use App\Models\DatosModel;
 use Config\Mimes;
 use App\Models\FechPostulaModel;
 use App\Models\RefInterModel;
 
 class MiPostulacionController extends BaseController{
+    
+    public function postulacion(){
+        if(!session()->logged_in){ 
+             return view('Auth/login');
+        }else{
+             $idUsuario=$_SESSION['id'];
+             $userModel = new UsuarioModel();
+             $data['user'] = $userModel->getSolicitanteByIdUser('IDUSUARIO',$idUsuario);
+            return view('solicitante/postulacion',$data);
+            }      
+    }
 
-   
-    /*
-    public function upload(){
-        if($imageFile = $this->request->getFile('dui')){
-            echo "uno";
-            if($imageFile->isValid() && !($imageFile->hasMoved())){
-                //validaciones 
-                echo "dos";
-                
-                $validated = $this->validate([
-                    'userFile' =>[
-                       'rules'=>'uploaded[dui]',
-                        'mime_in[image, image/png, image/jpg]'
-                    ]
-                ]);
-
-                if($validated){
-                    echo "ok";
-
-                }else{
-
-                    var_dump($this->validator->listErrors());        
-
-                    return false;
-                }
-                $newName = $imageFile->getRandomName();
-
-                echo WRITEPATH;
-
-                $imageFile->move(WRITEPATH.'uploads/dui',$newName);
-
-                
-
-            }
-            
-        }
-        return true;
-    }*/
     public function upload(){
 
-        $imageFile1 = $this->request->getFile('dui');
-        $imageFile2 = $this->request->getFile('nit');
-        $imageFile3 = $this->request->getFile('curriculum');
+        $db     =\Config\Database::connect();
+        $builder=$db->table('datos');
 
-        if($imageFile1 && $imageFile2 && $imageFile3){
+        $dui = $this->request->getFile('dui');
+        $nit = $this->request->getFile('nit');
+        $cv = $this->request->getFile('curriculum');
+        $id = $this->request->getVar('id');
+       
+        $idSol=$id;
+        if($dui && $nit && $cv){
             
-            if( ($imageFile1->isValid() && !($imageFile1->hasMoved())) &&
-                ($imageFile2->isValid() && !($imageFile2->hasMoved())) &&
-                ($imageFile3->isValid() && !($imageFile3->hasMoved()))){
+            if( ($dui->isValid() && !($dui->hasMoved())) &&
+                ($nit->isValid() && !($nit->hasMoved())) &&
+                ($cv->isValid() && !($cv->hasMoved()))){
                 //validaciones 
                 
                 $validated1 = $this->validate([
                     'userFile' =>[
                        'rules'=>'uploaded[dui]',
-                        'mime_in[image, image/png, image/jpg]'
+                        'mime_in[image, image/png, image/pdf]'
                     ]
                 ]);
                 $validated2 = $this->validate([
                     'userFile' =>[
                        'rules'=>'uploaded[nit]',
-                        'mime_in[image, image/png, image/jpg]'
+                        'mime_in[image, image/png, image/pdf]'
                     ]
                 ]);
                 $validated3 = $this->validate([
@@ -88,38 +66,40 @@ class MiPostulacionController extends BaseController{
 
                     return false;
                 }
-                $newName1 = $imageFile1->getRandomName();
-                $newName2 = $imageFile2->getRandomName();
-                $newName3 = $imageFile3->getRandomName();
+                $newName1 = $dui->getRandomName();
+                $newName2 = $nit->getRandomName();
+                $newName3 = $cv->getRandomName();
 
                 //echo WRITEPATH;
 
-                $imageFile1->move(WRITEPATH.'uploads/dui',$newName1);
-                $imageFile2->move(WRITEPATH.'uploads/nit',$newName2);
-                $imageFile3->move(WRITEPATH.'uploads/curriculum',$newName3);    
+                $dui->move(WRITEPATH.'uploads/dui',$newName1);
+                $nit->move(WRITEPATH.'uploads/nit',$newName2);
+                $cv->move(WRITEPATH.'uploads/curriculum',$newName3);    
             }
             
         }
         $userDatos = new DatosModel();
         $datos = $userDatos;
-
+        $builder->getWhere(['IDSOLICITANTE' => $idSol]);
         $data = [
             'URLCV' => $newName3,
             'URLNIT' => $newName2,
             'URLDUI' => $newName1
 
         ];
-        $id = $userDatos->insert($data);
-        $this->storePostulacion();
-        $this->insertReferenciaInterna();
-        echo $id;
-        return $this->response->redirect(site_url('postular/p'));
+        $builder->update($data);
+        //$save= $userDatos->update($idSol,$data);
+        $this->storePostulacion($idSol);
+        $this->insertReferenciaInterna($idSol);
+    
+        return $this->response->redirect(site_url('postular/'));
     }
     //Para insertar la pretenseion salarial
-    public function storePostulacion(){
+    public function storePostulacion($idSol){
         $fechaPost = new FechPostulaModel();
-
+        $idSolicitante=$idSol;
         $data = [
+            'IDSOLICITANTE'=>$idSolicitante,
             'PRETENCIONSALARIAL' => $this->request->getVar('pretensionSalarial'),
         ];
 
@@ -127,21 +107,27 @@ class MiPostulacionController extends BaseController{
 
     }
     //Para insertar referencias internas
-    public function insertReferenciaInterna(){
-        $referencia = new RefInterModel();
+    public function insertReferenciaInterna($idSol){
+        $referencia = new RefInterModel();    
+        $nombre= $this->request->getVar('nombreRecomienda');
+        $apellido=$this->request->getVar('apellidoRecomienda');
+        $telefono=$this->request->getVar('telRecomienda');
+        $badge=$this->request->getVar('badgeRecomienda');
+        $idSolicitante=$idSol;
 
-        $data = [
-            'NOMBREEMPLEADO' => $this->request->getVar('nombreRecomienda'),
-            'APELLIDOEMPLEADO' => $this->request->getVar('apellidoRecomienda'),
-            'TELEFONOEMPLEADO' => $this->request->getVar('telRecomienda'),
-            'BADGEEMPLEADO' => $this->request->getVar('badgefonoRecomienda'),
+        if(!empty($badge)){
+             $data = [
+            'IDSOLICITANTE' => $idSolicitante,
+            'NOMBREEMPLEADO' => $nombre,
+            'APELLIDOEMPLEADO' => $apellido,
+            'TELEFONOEMPLEADO' => $telefono,
+            'BADGEEMPLEADO' => $badge,
         ];
 
-        $referencia->insert($data);
+            $referencia->insert($data);     
+        }
+          
     }
 
-    public function p(){
-        return view('solicitante/postulacion');
-    }
 
 }

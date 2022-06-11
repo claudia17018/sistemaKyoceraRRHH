@@ -11,11 +11,10 @@ class FechPostulaModel extends Model{
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
 
-    protected $allowedFields = ['PRETENCIONSALARIAL','FECHAPOSTULACION'];
-
-    protected $useTimestamps = false;
+    protected $allowedFields = ['IDSOLICITANTE','PRETENCIONSALARIAL'];
+    protected $createdField  = 'FECHAPOSTULACION';
+    protected $updatedField  = '';
+    protected $useTimestamps = true;
     protected $skipValidation = false;
-
-    
-
+  
 }

@@ -2,15 +2,16 @@
 <?= $this->section('titulo') ?>Postulacion<?= $this->endSection() ?>
 <?= $this->section('contenido') ?>
 <div class="container-md">
- <h3 class="py-1">Mi postulacion</h3>
+ <h3 class="py-1">Mi postulaci&oacute;n</h3>
  <br>
     <div class="card p-2">
       <div class="card-body">
         <form name="registro" method="POST" enctype="multipart/form-data" action="<?= site_url('postular/up')?>">
+            <input type="hidden" name="id" class="form-control" id="id" value="<?php echo $user['IDSOLICITANTE'] ?>">
             <div class="md-3 row">
               <div class="col-sm-5">
                     <label for="pretensionSalarial">Pretensi&oacute;n salarial</label>
-                    <input type="text" name="pretensionSalarial" id="pretensionSalarial" required class="form-control">
+                    <input type="text" placeholder="Ingresa tu pretension salarial"name="pretensionSalarial" id="pretensionSalarial" required class="form-control">
                 </div>
                 <div class="col-sm-5">
                     <label for="dui">DUI</label>
@@ -72,7 +73,6 @@
     const d= document;
     let radios= d.querySelectorAll('input[type=radio][name="recomendado"]');
     let labels = d.querySelectorAll('label');
-    console.log(labels);
     radios.forEach(radio => radio.addEventListener('change', () => {
         if(radio.value==="si"){
           showlabelInput();
@@ -87,6 +87,7 @@
         if(label.id == 'nombreRecomienda' || label.id=='apellidoRecomienda'|| label.id == 'badgeRecomienda'|| label.id=='telRecomienda'){  
           label.style.display = 'none';
           nodoSiguiente.style.display = 'none';  
+          nodoSiguiente.removeAttribute("required","");
     } 
   }
 }
@@ -95,7 +96,8 @@
         let nodoSiguiente = label.nextElementSibling;
         if(label.id == 'nombreRecomienda'  || label.id=='apellidoRecomienda'|| label.id == 'badgeRecomienda'|| label.id=='telRecomienda'){  
           label.style.display = 'block';
-          nodoSiguiente.style.display = 'block';  
+          nodoSiguiente.style.display = 'block'; 
+          nodoSiguiente.setAttribute("required","");
     } 
   }
 }

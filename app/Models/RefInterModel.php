@@ -10,7 +10,7 @@ class RefInterModel extends Model{
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
 
-    protected $allowedFields = ['NOMBREEMPLEADO','APELLIDOEMPLEADO','TELEFONOEMPLEADO','BADGEEMPLEADO'];
+    protected $allowedFields = ['IDSOLICITANTE','NOMBREEMPLEADO','APELLIDOEMPLEADO','TELEFONOEMPLEADO','BADGEEMPLEADO'];
 
     protected $useTimestamps = false;
     protected $skipValidation = false;
