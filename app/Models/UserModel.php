@@ -25,5 +25,6 @@ class UserModel extends Model
     return $this->where($column,$value)->first();
 }
 
+ 
 
 }

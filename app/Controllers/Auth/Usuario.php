@@ -5,9 +5,15 @@ use App\Controllers\BaseController;
 use App\Models\UserModel;
 use App\Models\CrearCuentaModel;
 use App\Models\UsuarioModel;
+use App\Models\Medioscontacto;
+use App\Models\DatosModel;
+
+use App\DataBase\query;
+
 
 class Usuario extends BaseController
 {
+
     public function index()
     {
         if(!session()->logged_in){ 
@@ -98,9 +104,44 @@ class Usuario extends BaseController
             return view('Auth/view_crearCuenta');
         }
         /*********************** */
+
+
+
+        public function storeVal(){
+            $validation = service('validation');
+            $input = $this->validate([
+                'priNomSolicitante' => 'required|alpha_space',
+                'segNomSolicitante' => 'required|alpha_space',
+                'priApeSolicitante' => 'required|alpha_space',
+                'segApeSolicitante' => 'required|alpha_space',
+                'correoAspirante' => 'required|valid_email|is_unique[medioscontacto.CONTACTOSOLICITANTE]',
+                'passUsuario' => 'required|matches[contraseñaConfirmar]',
+
+            ]);
+
+            $user = new UsuarioModel();
+
+          
+
+            if(!($validation->withRequest($this->request)->run())){
+                //dd($validation->getErrors());
+                return redirect()->back()->with('errors', $this->validator->getErrors())->withInput();
+            
+            }
+            
+        }
+
         //insert data 
         public function store(){
+            /****************************************************/
+            $db     =\Config\Database::connect();
+            $builder=$db->table('datos');
+            /*****************************************************/
+
+            $this->storeVal();
+
             $userModel = new CrearCuentaModel();
+
             $user = $userModel;
             $aspiranteModel = new UsuarioModel();
             
@@ -116,12 +157,104 @@ class Usuario extends BaseController
                 'SOLICITANTEFECHANACIMIENTO' => $this->request->getVar('fechaNacimiento'),
                 'GENEROSOLICITANTE' => $this->request->getVar('genero'),
             ];
-           
-            $userModel->insert($data);
+            
+             
+            $query = $userModel->insert($data);
             $aspiranteModel->insert($data);
-            print_r($data);
-            return $this->response->redirect(site_url('/Auth'));
+            $campo = 'IDUSUARIO';
+            $tabla = 'solicitante';
+            //Recupera el ultimo id Insertado :VVVVVVVV
+            $idUser = $aspiranteModel->getInsertID();
+
+            //inserta la llave foranea de usuario en la tabla de solicitante
+            $this->insertarForaneasUsuario($aspiranteModel, $idUser, $campo, $tabla);
+            
+            $this->insertarTitulo($idUser);
+            $this->insertarCorreo($idUser);
+            
+            //$query = $db->query('SELECT IDSOLICITANTE from solicitante');    
+          
+           return $this->response->redirect(site_url('/Auth'));
         }
+
+        //Insertar llaves para usuario y solicitante
+        public function insertarForaneasUsuario($builder, $id, $campo, $tabla){
+            $db     =\Config\Database::connect();
+            $builder=$db->table($tabla);
+
+            $data=[
+                $campo => $id,
+            ];
+            $builder->where('IDSOLICITANTE=',$id);
+            $builder->update($data);
+        }
+
+        //Insertar foraneas generico 
+        public function insertarForaneaGenerico($builder, $id, $campo, $tabla, $condicion){
+            $db     =\Config\Database::connect();
+            $builder=$db->table($tabla);
+
+            $data=[
+                $campo => $id,
+            ];
+            $builder->where($condicion,$id);
+            $builder->update($data);
+        }
+
+        //Insertar titulo//
+        public function insertarTitulo($id){
+            $archivo = $this->request->getFile('tituloAspirante');
+
+            if($archivo){
+
+                if($archivo->isValid() && !($archivo->hasMoved())){
+                    
+                    $validated1 = $this->validate([
+                        'userFile' =>[
+                           'rules'=>'uploaded[tituloAspirante]',
+                            'mime_in[image, image/pdf]'
+                        ]
+                    ]);
+                    if($validated1){
+                        echo "ok";
+    
+                    }else{
+    
+                        var_dump($this->validator->listErrors());        
+    
+                        return false;
+                    }
+                    $newName1 = $archivo->getRandomName();
+
+                    $archivo->move(WRITEPATH.'uploads/titulos',$newName1);
+
+                    /**Enviar a la base**/
+                    $userDatos = new DatosModel();
+
+                    $data = [
+                        'URLTITULOACADEMICO' => $newName1,
+                        'IDSOLICITANTE' => $id,
+                    ];
+                    $userDatos->insert($data);
+                    
+                     return $ultimoID = $userDatos->getInsertID();
+
+                }
+            }
+
+        }
+
+        public function insertarCorreo($id){
+            $contacto = new Medioscontacto();
+            $data = [
+                'CONTACTOSOLICITANTE' => $this->request->getVar('correoAspirante'),
+                'IDSOLICITANTE' => $id,
+            ];
+
+            $contacto->insert($data);
+            return $contacto->getInsertID();
+        }
+
 
 /*
         public function aspiranteGuardar(){

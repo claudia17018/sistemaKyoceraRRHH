@@ -2,6 +2,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use App\Entities\User;
 
 class CrearCuentaModel extends Model{
     
@@ -11,7 +12,7 @@ class CrearCuentaModel extends Model{
     protected $primaryKey = 'IDUSUARIO';
     protected $useAutoIncrement = true;
     protected $allowedFields = ['NOMBREUSUARIO','CONTRASENA'];
-    protected $returnType = 'array';
+    protected $returnType = 'Array';
 
 	// Dates
 	//protected $useTimestamps        = false;
@@ -29,7 +30,8 @@ class CrearCuentaModel extends Model{
 	// Callbacks
 	protected $allowCallbacks       = true;
 	protected $beforeInsert         = ["beforeInsert"];
-    
+	//protected $infoUser;
+
 
 	protected function beforeInsert(array $data)
 	{
@@ -44,6 +46,10 @@ class CrearCuentaModel extends Model{
 		}
 
 		return $data;
+	}
+	/*
+	public function addInfoUser(User $ui){
+		$this->infoUser = $ui;
 	}
     /************************************************************/
 

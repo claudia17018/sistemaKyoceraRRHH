@@ -35,6 +35,12 @@ $routes->get('/', 'Home::index');
 $routes->add('/plantilla', 'Home::plantilla');
 
 
+$routes->group('postular',  ['namespace' => 'App\Controllers\postulacionCandidato'],function ($routes) {
+    $routes->get('', 'MiPostulacionController::postulacion', ['as'=> 'postularme'] );
+    $routes->post('up', 'MiPostulacionController::upload');
+});
+
+
 $routes->group('Auth',  ['namespace' => 'App\Controllers\Auth'],function ($routes) {
     $routes->get('', 'Usuario::index', ['as'=> 'login'] );
     $routes->post('check', 'Usuario::signin', ['as'=> 'signin']);
@@ -70,6 +76,7 @@ $routes->group('Solicitante',  ['namespace' => 'App\Controllers\Solicitante'],fu
     $routes->post('guardar/(:num)', 'Solicitante::guardarPerfil/$1');
     $routes->get('consultar/(:num)', 'Solicitante::singleSolicitante/$1');
     $routes->get('vacante', 'Solicitante::vacanteDisponible');
+    $routes->post('estadoPostulante', 'Solicitante::estadoPostulante');
 });
 $routes->group('AdminRH',  ['namespace' => 'App\Controllers\RRHH'],function ($routes) {
     $routes->get('', 'Admin::index', ['as'=> 'index'] );

@@ -4,8 +4,11 @@ namespace App\Controllers\Solicitante;
 use App\Controllers\BaseController;
 use App\Models\EstadoPostulanteModel;
 use App\Models\UsuarioModel;
+use App\Models\DatosModel;
+use App\Models\FechPostulaModel;
+use App\Models\RefInterModel;
+use App\Models\Medioscontacto;
 use App\Models\VacantesModel;
-
 
 class Solicitante extends BaseController
 {
@@ -20,8 +23,8 @@ class Solicitante extends BaseController
          if(!session()->logged_in){ 
              return view('Auth/login');
         }else{
-             $userModel = new UsuarioModel();
              $idUsuario=$_SESSION['id'];
+             $userModel = new UsuarioModel();
              $data['user'] = $userModel->getSolicitanteByIdUser('IDUSUARIO',$idUsuario);
             return view('Solicitante/perfil',$data);
             }
@@ -65,8 +68,22 @@ class Solicitante extends BaseController
      public function consultar($id = null){
         $model = new UsuarioModel();
         $data['solicitante'] = $model->getSolicitanteBy('IDSOLICITANTE',$id);
+
         $modelPostulante= new EstadoPostulanteModel();
         $data['estado']= $modelPostulante->findAll();
+
+        $modelPostulacion= new FechPostulaModel();
+        $data['postulacion']= $modelPostulacion->getSolicitantePostulacion('IDSOLICITANTE',$id);
+
+        $modelReferencias= new RefInterModel();
+        $referencia= $modelReferencias->getSolicitanteRef('IDSOLICITANTE',$id);
+        if($referencia){
+            $data['referencia']= $referencia;
+        }
+
+        $modelContacto = new Medioscontacto();
+        $data['contacto'] = $modelContacto->getSolicitanteContacto('IDSOLICITANTE',$id);
+      
          return view('Solicitante/perfilCandidato', $data);
      } 
 
@@ -94,5 +111,26 @@ class Solicitante extends BaseController
     }
     public function filtrarVacante(){
         
+    }
+    public function viewPDF($id){
+        $file = 'filename.pdf';
+        $filename = 'filename.pdf';
+
+        $modelDatos=new DatosModel();
+        // Header content type
+        header('Content-type: application/pdf');
+
+        header('Content-Disposition: inline; filename="' . $filename . '"');
+
+        header('Content-Transfer-Encoding: binary');
+
+        header('Accept-Ranges: bytes');
+
+        // Read the file
+        @readfile($file);
+    }
+
+    public function estadoPostulante(){
+
     }
 }

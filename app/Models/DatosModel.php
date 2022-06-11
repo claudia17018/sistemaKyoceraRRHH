@@ -12,7 +12,7 @@ class DatosModel extends Model{
     protected $returnType = 'array';
 
     protected $allowedFields = ['IDSOLICITANTE', 'URLCV', 'URLTITULOACADEMICO', 'URLFOTOCANDIDATO', 'URLNIT',
-        'URLDUI', 'URLISSS', 'ULAFP', 'URLANTECEDENTES'];
+        'URLDUI', 'URLISSS', 'URLAFP', 'URLANTECEDENTES'];
 
     protected $useTimestamps = false;
     protected $skipValidation = false;

@@ -2,6 +2,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use App\Entities\User;
 use \DateTime;
 use PhpParser\Node\Expr\Cast\String_;
 
