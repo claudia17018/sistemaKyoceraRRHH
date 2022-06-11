@@ -141,13 +141,14 @@ class Usuario extends BaseController
             $this->storeVal();
 
             $userModel = new CrearCuentaModel();
-
+            $n=1;
             $user = $userModel;
             $aspiranteModel = new UsuarioModel();
             
             $data = [
                 'NOMBREUSUARIO' => $this->request->getVar('duiSolicitante'),
                 'CONTRASENA' =>  $this->request->getVar('passUsuario'),
+                'IDROL'=>$n,
                 'DUI' => $this->request->getVar('duiSolicitante'),
                 'PRIMERNOMBRESOLICITANTE' => $this->request->getVar('priNomSolicitante'),
                 'PRIMERAPELLIDOSOLICITANTE' => $this->request->getVar('priApeSolicitante'),
@@ -158,7 +159,7 @@ class Usuario extends BaseController
                 'GENEROSOLICITANTE' => $this->request->getVar('genero'),
             ];
             
-             
+        
             $query = $userModel->insert($data);
             $aspiranteModel->insert($data);
             $campo = 'IDUSUARIO';
@@ -171,7 +172,7 @@ class Usuario extends BaseController
             
             $this->insertarTitulo($idUser);
             $this->insertarCorreo($idUser);
-            
+            print_r($data);
             //$query = $db->query('SELECT IDSOLICITANTE from solicitante');    
           
            return $this->response->redirect(site_url('/Auth'));

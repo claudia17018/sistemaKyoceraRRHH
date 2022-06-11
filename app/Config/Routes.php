@@ -32,10 +32,9 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
-$routes->add('/plantilla', 'Home::plantilla');
 
 
-$routes->group('postular',  ['namespace' => 'App\Controllers\postulacionCandidato'],function ($routes) {
+$routes->group('postular',  ['namespace' => 'App\Controllers\postulacionCandidato','filter'=>'Auth'],function ($routes) {
     $routes->get('', 'MiPostulacionController::postulacion', ['as'=> 'postularme'] );
     $routes->post('up', 'MiPostulacionController::upload');
 });
@@ -49,7 +48,7 @@ $routes->group('Auth',  ['namespace' => 'App\Controllers\Auth'],function ($route
     $routes->post('guardarAspirante', 'Usuario::store');
 });
 
-$routes->group('RRHH',  ['namespace' => 'App\Controllers\RRHH'],function ($routes) {
+$routes->group('RRHH',  ['namespace' => 'App\Controllers\RRHH', 'filter'=>'Auth'],function ($routes) {
     $routes->get('', 'Usuario::index', ['as'=> 'index'] );
     $routes->get('entrevistas/(:num)', 'EntrevistaController::entrevistas/$1');
     $routes->get('nuevoComentario/(:num)/(:num)', 'EntrevistaController::nuevoComentario/$1/$2');
@@ -61,14 +60,14 @@ $routes->group('RRHH',  ['namespace' => 'App\Controllers\RRHH'],function ($route
     $routes->get('eliminarEntrevista/(:num)/(:num)', 'EntrevistaController::eliminarEntrevista/$1/$2');
 });
 
-$routes->group('User',  ['namespace' => 'App\Controllers\User'],function ($routes) {
+$routes->group('User',  ['namespace' => 'App\Controllers\User', 'filter'=>'Auth'],function ($routes) {
     $routes->get('miPerfil', 'PerfilController::miPerfil');
     $routes->get('editar/(:num)', 'PerfilController::editarPerfil/$1');
     $routes->post('guardar/(:num)', 'PerfilController::guardarPerfil/$1');
     $routes->post('guardarComentario/(:num)/(:num)', 'EntrevistaController::guardarComentario/$1/$2');    
 });
 
-$routes->group('Solicitante',  ['namespace' => 'App\Controllers\Solicitante'],function ($routes) {
+$routes->group('Solicitante',  ['namespace' => 'App\Controllers\Solicitante', 'filter'=>'Auth'],function ($routes) {
     $routes->get('', 'Solicitante::index', ['as'=> 'index'] );
     $routes->get('miPerfil/(:num)', 'PerfilController::miPerfil/$1');
     $routes->get('perfil', 'Solicitante::perfil', ['as'=> 'perfil'] );
@@ -78,7 +77,7 @@ $routes->group('Solicitante',  ['namespace' => 'App\Controllers\Solicitante'],fu
     $routes->get('vacante', 'Solicitante::vacanteDisponible');
     $routes->post('estadoPostulante', 'Solicitante::estadoPostulante');
 });
-$routes->group('AdminRH',  ['namespace' => 'App\Controllers\RRHH'],function ($routes) {
+$routes->group('AdminRH',  ['namespace' => 'App\Controllers\RRHH', 'filter'=>'Auth'] ,function ($routes) {
     $routes->get('', 'Admin::index', ['as'=> 'index'] );
     $routes->get('vacantes', 'Admin::vacantes');
     $routes->get('crearVacantes', 'Admin::vacanteCrear');
