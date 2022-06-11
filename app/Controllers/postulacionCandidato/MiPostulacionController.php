@@ -6,6 +6,7 @@ use App\Models\DatosModel;
 use Config\Mimes;
 use App\Models\FechPostulaModel;
 use App\Models\RefInterModel;
+use App\Database\query;
 
 class MiPostulacionController extends BaseController{
 
@@ -47,7 +48,10 @@ class MiPostulacionController extends BaseController{
         }
         return true;
     }*/
+
+    /***********************************************/
     public function upload(){
+        //$validation = service('validation');
 
         $imageFile1 = $this->request->getFile('dui');
         $imageFile2 = $this->request->getFile('nit');
@@ -107,16 +111,29 @@ class MiPostulacionController extends BaseController{
                     'URLDUI' => $newName1
         
                 ];
+
                 $id = $userDatos->insert($data);
+               
             }
             
         }
+
+        $db     =\Config\Database::connect();
+        $builder=$db->table('datos');
+
+        $data2 = [
+            'URLCV' => 'otra insersion',
+        ];
+         //$builder->where('IDDATOS', 10);
+        $builder->update($data2,'IDDATOS=10');
+
 
         $this->storePostulacion();
         $this->insertReferenciaInterna();
         
         return $this->response->redirect(site_url('postular/p'));
     }
+    /****************************************************** */
     //Para insertar la pretenseion salarial
     public function storePostulacion(){
         $fechaPost = new FechPostulaModel();

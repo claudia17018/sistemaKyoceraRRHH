@@ -8,6 +8,10 @@ class UsuarioModel extends Model{
     protected $table = 'solicitante';
     protected $primaryKey = 'IDSOLICITANTE';
     protected $useAutoIncrement = true;
+
+    protected $createdField  = 'CREATED_AT';
+    protected $updatedField  = 'UPDATED_AT';
+    protected $useTimestamps = true;
     //protected $returnType = User::class;
 
     protected $allowedFields = ['DUI','GENEROSOLICITANTE','NIT','PRIMERAPELLIDOSOLICITANTE','PRIMERNOMBRESOLICITANTE','SEGUNDOAPELLIDOSOLICITANTE','SEGUNDONOMBRESOLICITANTE','SOLICITANTEFECHANACIMIENTO'];

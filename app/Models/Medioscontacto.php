@@ -11,7 +11,7 @@ class Medioscontacto extends Model{
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
 
-    protected $allowedFields = ['IDTIPOCONTACTO','CONTACTOSOLICITANTE'];
+    protected $allowedFields = ['IDTIPOCONTACTO','CONTACTOSOLICITANTE','IDSOLICITANTE'];
 
     protected $useTimestamps = false;
     protected $skipValidation = false;

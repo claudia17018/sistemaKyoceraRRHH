@@ -104,9 +104,44 @@ class Usuario extends BaseController
             return view('Auth/view_crearCuenta');
         }
         /*********************** */
+
+
+
+        public function storeVal(){
+            $validation = service('validation');
+            $input = $this->validate([
+                'priNomSolicitante' => 'required|alpha_space',
+                'segNomSolicitante' => 'required|alpha_space',
+                'priApeSolicitante' => 'required|alpha_space',
+                'segApeSolicitante' => 'required|alpha_space',
+                'correoAspirante' => 'required|valid_email|is_unique[medioscontacto.CONTACTOSOLICITANTE]',
+                'passUsuario' => 'required|matches[contraseñaConfirmar]',
+
+            ]);
+
+            $user = new UsuarioModel();
+
+          
+
+            if(!($validation->withRequest($this->request)->run())){
+                //dd($validation->getErrors());
+                return redirect()->back()->with('errors', $this->validator->getErrors())->withInput();
+            
+            }
+            
+        }
+
         //insert data 
         public function store(){
+            /****************************************************/
+            $db     =\Config\Database::connect();
+            $builder=$db->table('datos');
+            /*****************************************************/
+
+            $this->storeVal();
+
             $userModel = new CrearCuentaModel();
+
             $user = $userModel;
             $aspiranteModel = new UsuarioModel();
             
@@ -126,18 +161,48 @@ class Usuario extends BaseController
              
             $query = $userModel->insert($data);
             $aspiranteModel->insert($data);
+            $campo = 'IDUSUARIO';
+            $tabla = 'solicitante';
+            //Recupera el ultimo id Insertado :VVVVVVVV
+            $idUser = $aspiranteModel->getInsertID();
+
+            //inserta la llave foranea de usuario en la tabla de solicitante
+            $this->insertarForaneasUsuario($aspiranteModel, $idUser, $campo, $tabla);
             
-            $this->insertarTitulo();
-            $this->insertarCorreo();
-           
-            
+            $this->insertarTitulo($idUser);
+            $this->insertarCorreo($idUser);
             
             //$query = $db->query('SELECT IDSOLICITANTE from solicitante');    
           
-           //return $this->response->redirect(site_url('/Auth'));
+           return $this->response->redirect(site_url('/Auth'));
         }
+
+        //Insertar llaves para usuario y solicitante
+        public function insertarForaneasUsuario($builder, $id, $campo, $tabla){
+            $db     =\Config\Database::connect();
+            $builder=$db->table($tabla);
+
+            $data=[
+                $campo => $id,
+            ];
+            $builder->where('IDSOLICITANTE=',$id);
+            $builder->update($data);
+        }
+
+        //Insertar foraneas generico 
+        public function insertarForaneaGenerico($builder, $id, $campo, $tabla, $condicion){
+            $db     =\Config\Database::connect();
+            $builder=$db->table($tabla);
+
+            $data=[
+                $campo => $id,
+            ];
+            $builder->where($condicion,$id);
+            $builder->update($data);
+        }
+
         //Insertar titulo//
-        public function insertarTitulo(){
+        public function insertarTitulo($id){
             $archivo = $this->request->getFile('tituloAspirante');
 
             if($archivo){
@@ -167,21 +232,27 @@ class Usuario extends BaseController
                     $userDatos = new DatosModel();
 
                     $data = [
-                        'URLTITULOACADEMICO' => $newName1
+                        'URLTITULOACADEMICO' => $newName1,
+                        'IDSOLICITANTE' => $id,
                     ];
                     $userDatos->insert($data);
+                    
+                     return $ultimoID = $userDatos->getInsertID();
+
                 }
             }
 
         }
 
-        public function insertarCorreo(){
+        public function insertarCorreo($id){
             $contacto = new Medioscontacto();
             $data = [
                 'CONTACTOSOLICITANTE' => $this->request->getVar('correoAspirante'),
+                'IDSOLICITANTE' => $id,
             ];
 
             $contacto->insert($data);
+            return $contacto->getInsertID();
         }
 
 
