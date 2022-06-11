@@ -12,25 +12,31 @@ use App\Models\PersonalRecursosHumanosModel;
 class EntrevistaController extends BaseController{
     
     public function entrevistas($idSolicitante=null){
-        $entrevista = new EntrevistaModel();
-        $comentario = new ComentariosEntrevistasModel();
-        $solicitante = new UsuarioModel();
-        $datosCan = new DatosModel();
-        $estadoProceso = new EstadoProcesoModel();
-          
-        $datosEntrevista['datosEntrevista'] = $entrevista->orderBy('IDENTREVISTA','ASC')->getAllEntrevistasBy('IDSOLICITANTE',$idSolicitante);
-        $datosComentario['datosComentario'] = $comentario->orderBy('IDCOMENTARIOENTREVISTA','ASC')->findAll();
-        $datosSolicitante['datosSolicitante'] = $solicitante->getSolicitanteBy('IDSOLICITANTE', $idSolicitante);    
-        $datosCandidato['datosCandidato'] = $datosCan->getDatosBy('IDSOLICITANTE', $idSolicitante);
-        $datosEstadoProceso['datosEstadoProceso'] = $estadoProceso->getEstadoProcesoBy('IDSOLICITANTE', $idSolicitante);
-        
-        $data['entrevistas'] = $datosEntrevista;
-        $data['comentarios'] = $datosComentario;
-        $data['solicitante'] = $datosSolicitante;
-        $data['datosCand'] = $datosCandidato;
-        $data['estadoProceso'] = $datosEstadoProceso;
+
+         if(!session()->logged_in){ 
+             return view('Auth/login');
+        }else{
+                   
+            $entrevista = new EntrevistaModel();
+            $comentario = new ComentariosEntrevistasModel();
+            $solicitante = new UsuarioModel();
+            $datosCan = new DatosModel();
+            $estadoProceso = new EstadoProcesoModel();
             
-        return view('RRHH/entrevistasView',$data);
+            $datosEntrevista['datosEntrevista'] = $entrevista->orderBy('IDENTREVISTA','ASC')->getAllEntrevistasBy('IDSOLICITANTE',$idSolicitante);
+            $datosComentario['datosComentario'] = $comentario->orderBy('IDCOMENTARIOENTREVISTA','ASC')->findAll();
+            $datosSolicitante['datosSolicitante'] = $solicitante->getSolicitanteBy('IDSOLICITANTE', $idSolicitante);    
+            $datosCandidato['datosCandidato'] = $datosCan->getDatosBy('IDSOLICITANTE', $idSolicitante);
+            $datosEstadoProceso['datosEstadoProceso'] = $estadoProceso->getEstadoProcesoBy('IDSOLICITANTE', $idSolicitante);
+            
+            $data['entrevistas'] = $datosEntrevista;
+            $data['comentarios'] = $datosComentario;
+            $data['solicitante'] = $datosSolicitante;
+            $data['datosCand'] = $datosCandidato;
+            $data['estadoProceso'] = $datosEstadoProceso;
+                
+            return view('RRHH/entrevistasView',$data);
+        } 
     }
     
     public function nuevoComentario($idEntrevista=null,$idSolicitante=null){
@@ -80,7 +86,11 @@ class EntrevistaController extends BaseController{
     }
     
     public function crearEntrevista($idPersonalRRHH=null,$idSolicitante=null){
-        
+         if(!session()->logged_in){ 
+             return view('Auth/login');
+        }else{
+           
+           
         if(!$this->validate([
             'fechaEntrevista' => 'required',
             'horaInicio' => 'required',
@@ -109,6 +119,7 @@ class EntrevistaController extends BaseController{
           
         $entrevistaModel->insert($data);
         return $this->response->redirect(site_url('/RRHH/entrevistas/'.$idSolicitante));
+        } 
     }
     
     public function editarEntrevista($idEntrevista=null,$idSolicitante=null){
