@@ -14,4 +14,11 @@ class RefInterModel extends Model{
 
     protected $useTimestamps = false;
     protected $skipValidation = false;
+
+    public function getSolicitanteRef(String $column, $value){
+        $data = $this->where($column,$value)->first();
+        return $data;
+    }
+
+
 }

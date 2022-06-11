@@ -16,5 +16,10 @@ class FechPostulaModel extends Model{
     protected $updatedField  = '';
     protected $useTimestamps = true;
     protected $skipValidation = false;
+
+     public function getSolicitantePostulacion(String $column, $value){
+        $data = $this->where($column,$value)->first();
+        return $data;
+    }
   
 }
