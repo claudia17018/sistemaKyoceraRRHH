@@ -7,9 +7,7 @@ use App\Models\CrearCuentaModel;
 use App\Models\UsuarioModel;
 use App\Models\Medioscontacto;
 use App\Models\DatosModel;
-
 use App\DataBase\query;
-
 
 class Usuario extends BaseController
 {
@@ -104,9 +102,6 @@ class Usuario extends BaseController
             return view('Auth/view_crearCuenta');
         }
         /*********************** */
-
-
-
         public function storeVal(){
             $validation = service('validation');
             $input = $this->validate([
@@ -120,8 +115,6 @@ class Usuario extends BaseController
             ]);
 
             $user = new UsuarioModel();
-
-          
 
             if(!($validation->withRequest($this->request)->run())){
                 //dd($validation->getErrors());

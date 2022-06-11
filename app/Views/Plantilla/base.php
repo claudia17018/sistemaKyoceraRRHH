@@ -24,10 +24,7 @@
     <div class="header__container">
       <img src="<?php echo base_url('public/assets/imagen/user.png'); ?>" alt="" class="header__img">
         <a href="#" class="header__logo">Bienvenido </a>
-          <div class="header__search">
-            <input type="search" placeholder="Buscar" class="header__input">
-              <i class="bi bi-search"></i>
-            </div>
+        
             <div class="header__toggle">
                 <i class="bi bi-list" id="header-toggle"></i>
             </div>
@@ -43,7 +40,7 @@
               <div class="nav__list">
                 <div class="nav__items">               
                   <h3 class="nav__subtitle">Mi Perfil</h3>
-                    <a href="#" class="nav__link active">
+                    <a href="<?=base_url('RRHH/Admin')?>" class="nav__link active">
                       <i class="bi bi-house-door nav__icon"></i>
                       <span class="nav__name">Inicio</span>
                     </a>                 
@@ -68,7 +65,7 @@
                           <span class="nav__name">Candidatos</span>
                         <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
                       </a>
-                       <a href="#" class="nav__link">
+                       <a href="<?=base_url('RRHH/entrevistas/1')?>" class="nav__link">
                         <i class='bi bi-calendar nav__icon' ></i>
                           <span class="nav__name">Entrevista</span>
                         <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>

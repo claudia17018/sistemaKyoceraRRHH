@@ -66,6 +66,7 @@ class Solicitante extends BaseController
     }
 
      public function consultar($id = null){
+    
         $model = new UsuarioModel();
         $data['solicitante'] = $model->getSolicitanteBy('IDSOLICITANTE',$id);
 
@@ -80,7 +81,7 @@ class Solicitante extends BaseController
         if($referencia){
             $data['referencia']= $referencia;
         }
-
+        
         $modelContacto = new Medioscontacto();
         $data['contacto'] = $modelContacto->getSolicitanteContacto('IDSOLICITANTE',$id);
       
@@ -131,6 +132,11 @@ class Solicitante extends BaseController
     }
 
     public function estadoPostulante(){
+       $model=new UsuarioModel();
+       $estado=$this->request->getVar('opcion');
+       $id=$this->request->getVar('id');
+
+       
 
     }
 }

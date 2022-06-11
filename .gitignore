@@ -60,7 +60,7 @@ application/logs/*
 
 !application/*/.htaccess
 
-composer.lock
+
 tests/mocks/database/ci_test.sqlite
 
 /vendor/

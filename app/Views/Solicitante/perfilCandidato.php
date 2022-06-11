@@ -17,12 +17,14 @@
                     <td>Estado&nbsp;</td>
                      <td>   
                     <form method="POST" action="<?php echo base_url('Solicitante/Solicitante/estadoPostulante'); ?>">
-                    <select id="estado" class="form-select" aria-label="Default select example">
+                     <input type="hidden" name="id" class="form-control" id="id" value="<?php echo $solicitante['IDSOLICITANTE'] ?>">
+                       <select id="estado" class="form-select" aria-label="Default select example">
                         <option disabled selected>Selecciona el estado del candidato</option>
                         <?php foreach($estado as $e): ?>
-                              <option value="<?=$e->IDESTADOPOSTULANTE ?>"><?=$e->TIPOESTADO ?></option>
+                              <option id="option" value="<?=$e->IDESTADOPOSTULANTE ?>"><?=$e->TIPOESTADO ?></option>
                         <?php endforeach;?>  
                     </select>
+                     <input type="hidden" name="opcion" id="opcion" class="form-control" value="">
                    </td>
                    <td style="width:2%;"></td>
                    <td><button type="submit" style="width:80px;" class="btn btn-primary">Aceptar</button></form></td>
@@ -123,9 +125,11 @@
 <?= $this->section('js')?>
 <script>
     const selectElement = document.getElementById('estado');
+    let valor=document.getElementById('opcion');
     selectElement.addEventListener('change', (event) => {
     const resultado=  `${event.target.value}`;
-    console.log(resultado);
+   valor.setAttribute('value',resultado);
+
 });
 
 </script>

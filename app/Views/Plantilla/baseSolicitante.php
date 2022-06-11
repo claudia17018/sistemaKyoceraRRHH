@@ -22,13 +22,6 @@
     <div class="header__container">
       <img src="<?php echo base_url('public/assets/imagen/user.png'); ?>" alt="" class="header__img">
         <a href="#" class="header__logo">Bienvenido </a>
-          <div class="header__search">
-            <input type="search" placeholder="Buscar" class="header__input">
-              <i class="bi bi-search"></i>
-            </div>
-            <div class="header__toggle">
-                <i class="bi bi-list" id="header-toggle"></i>
-            </div>
      </div>
   </header>
    <div class="nav" id="navbar">

@@ -49,7 +49,7 @@ $routes->group('Auth',  ['namespace' => 'App\Controllers\Auth'],function ($route
 });
 
 $routes->group('RRHH',  ['namespace' => 'App\Controllers\RRHH', 'filter'=>'Auth'],function ($routes) {
-    $routes->get('', 'Usuario::index', ['as'=> 'index'] );
+    $routes->get('', 'Usuario::index', ['as'=> 'index2'] );
     $routes->get('entrevistas/(:num)', 'EntrevistaController::entrevistas/$1');
     $routes->get('nuevoComentario/(:num)/(:num)', 'EntrevistaController::nuevoComentario/$1/$2');
     $routes->post('guardarComentario/(:num)/(:num)', 'EntrevistaController::guardarComentario/$1/$2');
