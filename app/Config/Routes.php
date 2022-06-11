@@ -49,12 +49,28 @@ $routes->group('Auth',  ['namespace' => 'App\Controllers\Auth'],function ($route
     $routes->post('guardarAspirante', 'Usuario::store');
 });
 
-$routes->group('AdminRH',  ['namespace' => 'App\Controllers\RRHH'],function ($routes) {
+$routes->group('RRHH',  ['namespace' => 'App\Controllers\RRHH'],function ($routes) {
     $routes->get('', 'Usuario::index', ['as'=> 'index'] );
-    $routes->get('entrevistas', 'EntrevistaController::entrevistas');
-    $routes->get('nuevoComentario/(:num)', 'EntrevistaController::nuevoComentario/$1');
-    $routes->post('guardarComentario/(:num)', 'EntrevistaController::guardarComentario/$1');
-    
+    $routes->get('entrevistas/(:num)', 'EntrevistaController::entrevistas/$1');
+    $routes->get('nuevoComentario/(:num)/(:num)', 'EntrevistaController::nuevoComentario/$1/$2');
+    $routes->post('guardarComentario/(:num)/(:num)', 'EntrevistaController::guardarComentario/$1/$2');    
+});
+
+$routes->group('Solicitante',  ['namespace' => 'App\Controllers\Solicitante'],function ($routes) {
+    $routes->get('', 'Solicitante::index', ['as'=> 'index'] );
+    $routes->get('miPerfil/(:num)', 'PerfilController::miPerfil/$1');
+    $routes->get('perfil', 'Solicitante::perfil', ['as'=> 'perfil'] );
+    $routes->get('editar/(:num)', 'Solicitante::editarPerfil/$1');
+    $routes->post('guardar/(:num)', 'Solicitante::guardarPerfil/$1');
+    $routes->get('consultar/(:num)', 'Solicitante::singleSolicitante/$1');
+});
+$routes->group('AdminRH',  ['namespace' => 'App\Controllers\RRHH'],function ($routes) {
+    $routes->get('', 'Admin::index', ['as'=> 'index'] );
+    $routes->get('vacantes', 'Admin::vacantes');
+    $routes->get('crearVacantes', 'Admin::vacanteCrear');
+    $routes->post('guardarVacantes', 'Admin::vacantesGuardar');
+    $routes->get('borrarVacantes/(:num)', 'Admin::vacantesBorrar/$1');
+    $routes->get('editarVacantes/(:num)', 'Admin::vacantesEditar/$1');
 });
 
 

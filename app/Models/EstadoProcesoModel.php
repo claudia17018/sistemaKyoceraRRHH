@@ -10,7 +10,7 @@ class EstadoProcesoModel extends Model{
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
 
-    protected $allowedFields = ['IDSOLICITANTE', 'ESTADOPROCESO', 'FECHAACTUALIZACIONDELPROCESO'];
+    protected $allowedFields = ['IDSOLICITANTE', 'ESTADOPROCESO', 'UPDATED_AT'];
 
     protected $useTimestamps = false;
     protected $skipValidation = false;

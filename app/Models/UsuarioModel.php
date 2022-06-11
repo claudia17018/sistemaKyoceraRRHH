@@ -3,28 +3,18 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 use App\Entities\User;
+use \DateTime;
+use PhpParser\Node\Expr\Cast\String_;
 
 class UsuarioModel extends Model{
     protected $table = 'solicitante';
     protected $primaryKey = 'IDSOLICITANTE';
     protected $useAutoIncrement = true;
+    protected $returnType = 'array';
 
-    protected $createdField  = 'CREATED_AT';
-    protected $updatedField  = 'UPDATED_AT';
-    protected $useTimestamps = true;
-    //protected $returnType = User::class;
-
-    protected $allowedFields = ['IDUSUARIO','DUI','GENEROSOLICITANTE','NIT','PRIMERAPELLIDOSOLICITANTE','PRIMERNOMBRESOLICITANTE','SEGUNDOAPELLIDOSOLICITANTE','SEGUNDONOMBRESOLICITANTE','SOLICITANTEFECHANACIMIENTO'];
-/*
-    protected $afterInsert = ['storeUserInfo'];
-
-	protected function storeUserInfo($data){
-		$this->infoUser->IDSOLICITANTE = $data['IDUSUARIO'];
-		$model = model('CrearCuentaModel');
-		$model->insert($this->infoUser);
-	}*/
-
-      public function getSolicitanteBy(String $column, $value){
+    protected $allowedFields = ['DUI','IDUSUARIO','GENEROSOLICITANTE','NIT','PRIMERAPELLIDOSOLICITANTE','PRIMERNOMBRESOLICITANTE','SEGUNDOAPELLIDOSOLICITANTE','SEGUNDONOMBRESOLICITANTE','SOLICITANTEFECHANACIMIENTO'];
+     
+     public function getSolicitanteBy(String $column, $value){
         $data = $this->where($column,$value)->first();
         return $data;
     }
@@ -33,5 +23,5 @@ class UsuarioModel extends Model{
          $solicitante = $this->where($idusuario,$id)->first();
         return $solicitante;
     }
-     
+
 }
