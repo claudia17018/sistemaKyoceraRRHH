@@ -48,17 +48,13 @@
                     </div>
                 </div>
                 <div class="row mb-3">
+                    
                     <div class="col-md-6">
-                        <label for="tipContatacionVC" class="form-label">Tipo de contratación*</label>
-                        <input type="text" name="tipContatacionVC" id="tipContatacionVC" class="form-control" placeholder="" aria-describedby="helpId" required>
-                        <!-- <small id="helpId" class="text-muted">Aqui debe colocar su nombre</small>-->
-                    </div>
-                    <div class="col-md-3">
                         <label for="edadMinVC" class="form-label">Edad mínima requerida</label>
                         <input type="text" name="edadMinVC" id="edadMinVC" class="form-control" placeholder="" aria-describedby="helpId" pattern="[0-9]+"  title="Números enteros positivos">
                         <!-- <small id="helpId" class="text-muted">Aqui debe colocar su nombre</small>-->
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <label for="edadMaxVC" class="form-label">Edad máxima requerida</label>
                         <input type="number" name="edadMaxVC" id="edadMaxVC" class="form-control" placeholder="" aria-describedby="helpId"  pattern="[0-9]+"  title="Números enteros positivos">
                         <!-- <small id="helpId" class="text-muted">Aqui debe colocar su nombre</small>-->

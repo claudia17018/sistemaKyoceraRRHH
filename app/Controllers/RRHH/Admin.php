@@ -42,7 +42,6 @@ class Admin extends BaseController
         $nivEstudio= $this->request->getVar('nivEstudioVC');
         $experiencia= $this->request->getVar('experienciaVC');
         $genero= $this->request->getVar('generoVC');
-        $salario= $this->request->getVar('salarioVC');
         $tipContatacion= $this->request->getVar('tipContatacionVC');
         $edadMin= $this->request->getVar('edadMinVC');
         $edadMax= $this->request->getVar('edadMaxVC');
@@ -53,7 +52,7 @@ class Admin extends BaseController
             'DESCRIPCIONVACANTE'=>$descripcion,
             'REQUERIMIENTOSPROPIOSVACANTE'=>$requerimientos,
             'NUMEROVACANTES'=>$numPlazas,
-            'tipContratacion'=>$tipContatacion,
+            //'tipContratacion'=>$tipContatacion,
             'ESTADOVACANTE'=>"Activo",
             'IDAREA'=>1,
             'IDPERSONALRECURSOSHUMANOS'=>1,
@@ -116,8 +115,69 @@ class Admin extends BaseController
         return view('RRHH/vacantesEditar',$datosEditarV);
      
     }
-    public function vacanteVer()
+    public function vacanteVer($id=null)
     {
+        $vacanteEditar =new VacantesModel();
+        $requerimientosvacanteEditar =new RequerimientosVacanteModel();
+
+
+       $datosEditarV['vacanteEditar']=$vacanteEditar->where('IDVACANTE',$id)->first();
        
+       $datosEditarV['requerimientosvacanteEditar']=$requerimientosvacanteEditar->where('IDVACANTE',$id)->first();
+
+        return view('RRHH/vacantesVer',$datosEditarV);
+       
+    }
+
+    public function vacantesActualizar()
+    {
+        $vacante =new VacantesModel();
+        $requerimientosvacante =new RequerimientosVacanteModel();
+        
+
+        $nombre= $this->request->getVar('nombreVC');
+        $descripcion= $this->request->getVar('descripcionVC');
+        $requerimientos= $this->request->getVar('requerimientosVC');
+        $numPlazas= $this->request->getVar('numPlazasVC');
+        $nivEstudio= $this->request->getVar('nivEstudioVC');
+        $experiencia= $this->request->getVar('experienciaVC');
+        $genero= $this->request->getVar('generoVC');
+        $tipContatacion= $this->request->getVar('tipContatacionVC');
+        $edadMin= $this->request->getVar('edadMinVC');
+        $edadMax= $this->request->getVar('edadMaxVC');
+        
+        $datosVacante=[
+            'NOMBREVACANTE'=>$nombre,
+            'DESCRIPCIONVACANTE'=>$descripcion,
+            'REQUERIMIENTOSPROPIOSVACANTE'=>$requerimientos,
+            'NUMEROVACANTES'=>$numPlazas,
+            //'tipContratacion'=>$tipContatacion,
+            //'ESTADOVACANTE'=>"Activo",
+             // 'IDAREA'=>1,
+            //'IDPERSONALRECURSOSHUMANOS'=>1,
+            'UPDATED_AT'=>date("y-m-d")
+        ];
+        
+
+        $id=$this->request->getVar('id2');
+        $vacante->update($id,$datosVacante);
+
+        $idVac=$requerimientosvacante->where('IDVACANTE',$id)->select('IDREQVACANTE')->find();
+        
+ 
+        $datosRequerimientosVacante=[
+           
+            'EXPERIENCIALABORAL'=>$experiencia,
+            'NIVEL_ESTUDIO'=>$nivEstudio,
+            'GENEROCANDIDATO'=>$genero,
+            'NUMEROVACANTES'=>$numPlazas,
+            'EDADMINIMAREQUERIDA'=>$edadMin,
+            'EDADMAXIMAREQUERIDA'=>$edadMax
+            
+        ];
+        $requerimientosvacante->update($idVac[0]['IDREQVACANTE'],$datosRequerimientosVacante);
+
+
+        return $this->response->redirect(site_url('AdminRH/vacantes'));
     }
 }
