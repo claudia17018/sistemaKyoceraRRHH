@@ -14,23 +14,11 @@ class VacantesModel extends Model{
     public function listarVacantes(){
         $nombre = $this->db->query("SELECT * FROM vacante");
         return $nombre->getResult();
-       
     }
-    public function buscar($bus){
-        $db     =\Config\Database::connect();
-        $builder=$db->table('vacante');
-        //$vacantes = new VacantesModel();
-        $builder->like('NOMBREVACANTE',$bus);
-        
-       $datos= $builder;
 
-        
-      
-      
-       
-        
-        //$quer=$builder->get('vacante');
-        return $datos->get('vacante');
+    public function innerJoin(){
+        $nombre = $this->db->query("SELECT * FROM vacante INNER JOIN requerimientosvacante ON vacante.IDVACANTE = requerimientosvacante.IDVACANTE");
 
+        return $nombre->getResult();
     }
 }

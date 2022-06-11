@@ -69,6 +69,7 @@ $routes->group('Solicitante',  ['namespace' => 'App\Controllers\Solicitante'],fu
     $routes->get('editar/(:num)', 'Solicitante::editarPerfil/$1');
     $routes->post('guardar/(:num)', 'Solicitante::guardarPerfil/$1');
     $routes->get('consultar/(:num)', 'Solicitante::singleSolicitante/$1');
+    $routes->get('vacante', 'Solicitante::vacanteDisponible');
 });
 $routes->group('AdminRH',  ['namespace' => 'App\Controllers\RRHH'],function ($routes) {
     $routes->get('', 'Admin::index', ['as'=> 'index'] );
