@@ -23,7 +23,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'http://localhost/sistemaKyoceraRRHH/';
+    public $baseURL = 'https://seashell-app-r3oyw.ondigitalocean.app/';
 
     /**
      * --------------------------------------------------------------------------
