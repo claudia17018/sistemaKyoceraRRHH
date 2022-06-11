@@ -14,7 +14,7 @@ class UsuarioModel extends Model{
     protected $useTimestamps = true;
     //protected $returnType = User::class;
 
-    protected $allowedFields = ['DUI','GENEROSOLICITANTE','NIT','PRIMERAPELLIDOSOLICITANTE','PRIMERNOMBRESOLICITANTE','SEGUNDOAPELLIDOSOLICITANTE','SEGUNDONOMBRESOLICITANTE','SOLICITANTEFECHANACIMIENTO'];
+    protected $allowedFields = ['IDUSUARIO','DUI','GENEROSOLICITANTE','NIT','PRIMERAPELLIDOSOLICITANTE','PRIMERNOMBRESOLICITANTE','SEGUNDOAPELLIDOSOLICITANTE','SEGUNDONOMBRESOLICITANTE','SOLICITANTEFECHANACIMIENTO'];
 /*
     protected $afterInsert = ['storeUserInfo'];
 
@@ -23,5 +23,15 @@ class UsuarioModel extends Model{
 		$model = model('CrearCuentaModel');
 		$model->insert($this->infoUser);
 	}*/
+
+      public function getSolicitanteBy(String $column, $value){
+        $data = $this->where($column,$value)->first();
+        return $data;
+    }
+
+    public function getSolicitanteByIdUser(String $idusuario,$id){
+         $solicitante = $this->where($idusuario,$id)->first();
+        return $solicitante;
+    }
      
 }
