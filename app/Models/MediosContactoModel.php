@@ -10,7 +10,7 @@ class MediosContactoModel extends Model{
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
 
-    protected $allowedFields = ['IDTIPOCONTACTO','IDSOLICITANTE', 'CONTACTOSOLICITANTE'];
+    protected $allowedFields = ['IDTIPOCONTACTO','CONTACTOSOLICITANTE','IDSOLICITANTE'];
 
     protected $useTimestamps = false;
     protected $skipValidation = false;
@@ -27,7 +27,5 @@ class MediosContactoModel extends Model{
                 }
             }
         }
-        
-        
     }
 }

@@ -63,7 +63,8 @@
         <div class="container-fluid" style="background-color: white; padding-left: 30px; padding-right: 30px">
            
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-primary bi-plus-lg" type="button"> Nueva</button>
+                <a class="btn btn-primary bi-plus-lg" type="button" 
+                   href="<?=base_url('AdminRH/nuevaEntrevista/'.$sol['IDSOLICITANTE']);?>"> Nueva</a>
             </div>
             <span style="align-items: center;">N° de entrevistas:
                 <label><?=count($entrevistas['datosEntrevista']); ?></label>           
@@ -75,8 +76,10 @@
                  style="border-radius:5px; padding-left:25px; padding-right:25px; padding-top:15px; ">
                 <p><b><?=$entrevista['TITULOENTREVISTA']?></b>
                 <span style="font-size:18px; float:right;">
-                    <a class="bi-pencil-fill me-md-1"  href="#"></a>
-                    <a class="bi-x-circle" style="color: red;" href="#"></a>
+                    <a class="bi-pencil-fill me-md-1"  
+                       href="<?=base_url('AdminRH/editarEntrevista/'.$entrevista['IDENTREVISTA'].'/'.$sol['IDSOLICITANTE']);?>"></a>
+                    <a class="bi-x-circle" style="color: red;" 
+                       href="<?=base_url('AdminRH/eliminarEntrevista/'.$entrevista['IDENTREVISTA'].'/'.$sol['IDSOLICITANTE']);?>"></a>
                 </span>              
                 <br>
                 <div class="row g-3">
@@ -113,8 +116,6 @@
             <br><br> 
             <?php endforeach;?>
         </div> 
-        
-    </div>        
-    </main>
-    
-    <?= $this->endSection() ?>
+    </div>         
+    <?= $this->endSection()?>
+</main>

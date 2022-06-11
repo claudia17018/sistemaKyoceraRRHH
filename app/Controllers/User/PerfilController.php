@@ -54,6 +54,19 @@ class PerfilController extends BaseController{
     
     public function guardarPerfil($idSolicitante=null)
     {
+        if(!$this->validate([
+            'priNomSolicitante' => 'required',
+            'segNomSolicitante' => 'required',
+            'priApeSolicitante' => 'required',
+            'segApeSolicitante' => 'required',
+            'fechaNacimiento' => 'required',
+            'genero' => 'required',
+        ])){
+            return redirect()->back()
+            ->with('errors',$this->validator->getErrors())
+            ->withInput();
+        }
+        
         $candidato = new UsuarioModel();
         $educacion = new EducacionModel();
         $tipoContactoModel = new TipoContactoModel();
@@ -64,7 +77,7 @@ class PerfilController extends BaseController{
             'SEGUNDONOMBRESOLICITANTE' => $this->request->getVar('segNomSolicitante'),
             'PRIMERAPELLIDOSOLICITANTE' => $this->request->getVar('priApeSolicitante'),
             'SEGUNDOAPELLIDOSOLICITANTE' => $this->request->getVar('segApeSolicitante'),
-            'SOLICITANTEFECHANACIMIENTO' => $this->request->getVar('fechaNacimiento'),
+            'SOLICITANTEFECHANACIMIENTO' => date('Y-m-d', strtotime($this->request->getVar('fechaNacimiento'))),
             'GENEROSOLICITANTE' => $this->request->getVar('genero'),
             'UPDATED_AT' => date('Y-m-d')
             ];       

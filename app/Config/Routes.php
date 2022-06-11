@@ -48,7 +48,11 @@ $routes->group('AdminRH',  ['namespace' => 'App\Controllers\RRHH'],function ($ro
     $routes->get('entrevistas/(:num)', 'EntrevistaController::entrevistas/$1');
     $routes->get('nuevoComentario/(:num)/(:num)', 'EntrevistaController::nuevoComentario/$1/$2');
     $routes->post('guardarComentario/(:num)/(:num)', 'EntrevistaController::guardarComentario/$1/$2');
-    
+    $routes->get('nuevaEntrevista/(:num)', 'EntrevistaController::nuevaEntrevista/$1');
+    $routes->post('crearEntrevista/(:num)/(:num)', 'EntrevistaController::crearEntrevista/$1/$2');
+    $routes->get('editarEntrevista/(:num)/(:num)', 'EntrevistaController::editarEntrevista/$1/$2');
+    $routes->post('guardarEntrevista/(:num)/(:num)/(:num)', 'EntrevistaController::guardarEntrevista/$1/$2/$3');
+    $routes->get('eliminarEntrevista/(:num)/(:num)', 'EntrevistaController::eliminarEntrevista/$1/$2');
 });
 
 $routes->group('User',  ['namespace' => 'App\Controllers\User'],function ($routes) {
