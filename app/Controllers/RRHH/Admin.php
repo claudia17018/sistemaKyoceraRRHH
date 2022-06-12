@@ -231,14 +231,6 @@ class Admin extends BaseController
         return $this->response->redirect(site_url('AdminRH/vacantes'));
     }
 
-
-
-
-
-
-
-
-
     public function prueba($id = null)
     {/*
         $vacante = new VacantesModel();
@@ -270,11 +262,6 @@ class Admin extends BaseController
         $vacanteEditar = new VacantesModel();
         $fechaPostulacion = new FechaPostulacionModel();
         $postulante = new SolicitanteModel();
-       
-
-        
-     
-
         $d['vacante'] = $vacanteEditar->where('IDVACANTE', $id)->first();
         $d['fechaPos'] =  $fechaPostulacion->where('IDVACANTE',$id)->find();
         $d['pos'] =  $postulante->find();

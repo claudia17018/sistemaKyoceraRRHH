@@ -1,8 +1,6 @@
 <?= $this->extend('Plantilla/base') ?>
 <?= $this->section('contenido') ?>
 <div class="container-fluid  p-4">
-
-
     <div class="row mb-3">
         <div class="col  ">
             <h4>Vacantes: <?= $vacante['NOMBREVACANTE'] ?></h4>
@@ -47,14 +45,11 @@
 
                         <td>
 
-                            <a href="<?= base_url('AdminRH/prueba/' . $idSol) ?>">
+                            <a href="<?= base_url('Solicitante/consultar/' . $idSol) ?>">
                                 <button class="bi bi-eye-fill  view_icon"></button>
                             </a>
                         </td>
                         <td><?= $fe['FECHAPOSTULACION'] ?> </td>
-
-
-
                     </tr>
 
                 <?php $contador = $contador + 1;

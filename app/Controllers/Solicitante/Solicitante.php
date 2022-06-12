@@ -132,11 +132,21 @@ class Solicitante extends BaseController
     }
 
     public function estadoPostulante(){
-       $model=new UsuarioModel();
-       $estado=$this->request->getVar('opcion');
-       $id=$this->request->getVar('id');
+      
+        $db     =\Config\Database::connect();
+        $builder=$db->table('solicitante');
 
-       
+        $estado=$this->request->getVar('opcion');
+        $idS=$this->request->getVar('id');
+
+        $builder->getWhere(['IDSOLICITANTE' => $idS]);
+
+         $data = [
+            'IDESTADOPOSTULANTE' => $estado,
+        ];
+        $builder->update($data);
+        
+       return view('Solicitante/index');
 
     }
 }
