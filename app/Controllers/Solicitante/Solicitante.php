@@ -9,12 +9,17 @@ use App\Models\FechPostulaModel;
 use App\Models\RefInterModel;
 use App\Models\Medioscontacto;
 use App\Models\VacantesModel;
+use Prophecy\Doubler\Generator\Node\ReturnTypeNode;
 
 class Solicitante extends BaseController
 {
     public function index()
     {   
-        return view('Solicitante/index');
+         if(!session()->logged_in){ 
+             return view('Auth/login');
+        }else{
+            return view('Solicitante/index');
+            } 
     }    
 
 
@@ -31,17 +36,26 @@ class Solicitante extends BaseController
         }
 
         public function miPerfil($idUsuario=null)
-    {
+    {  
+         if(!session()->logged_in){ 
+             return view('Auth/login');
+        }else{
+           
         $UsuarioModel = new UsuarioModel();
    
         $datosCandidato['datosCandidato'] = $UsuarioModel->getSolicitanteBy('IDUSUARIO', $idUsuario);
                    
         return view('Solicitante/perfilView', $datosCandidato);
+            } 
     }
     
     public function editarPerfil($idSolicitante=null)
     {
-        return view('Solicitante/view_editarPerfilCandidato');
+        if(!session()->logged_in){ 
+              return view('Auth/login');
+        }else{
+            return view('Solicitante/view_editarPerfilCandidato');
+            } 
     }
     
     public function guardarPerfil($idSolicitante=null)
@@ -66,6 +80,10 @@ class Solicitante extends BaseController
     }
 
      public function consultar($id = null){
+
+         if(!session()->logged_in){ 
+             return view('Auth/login');
+        }else{
     
         $model = new UsuarioModel();
         $data['solicitante'] = $model->getSolicitanteBy('IDSOLICITANTE',$id);
@@ -86,9 +104,15 @@ class Solicitante extends BaseController
         $data['contacto'] = $modelContacto->getSolicitanteContacto('IDSOLICITANTE',$id);
       
          return view('Solicitante/perfilCandidato', $data);
+
+        }
      } 
 
      public function vacanteDisponible(){
+        if(!session()->logged_in){ 
+             return view('Auth/login');
+        }else{
+             
         $vacantes = new VacantesModel();
         $datos = $vacantes->listarVacantes();
 
@@ -97,9 +121,16 @@ class Solicitante extends BaseController
         ];
 
          return view('Solicitante/vacanteDisponible', $data);
+
+        } 
      }
 
     public function mostraVacantes(){
+
+         if(!session()->logged_in){ 
+             return view('Auth/login');
+        }else{
+           
         $vacantes = new VacantesModel();
         $datos = $vacantes->listarVacantes();
 
@@ -108,7 +139,7 @@ class Solicitante extends BaseController
         ];
 
         return view('vacanteDisponible', $data);
-
+        } 
     }
     public function filtrarVacante(){
         
@@ -132,11 +163,20 @@ class Solicitante extends BaseController
     }
 
     public function estadoPostulante(){
-       $model=new UsuarioModel();
-       $estado=$this->request->getVar('opcion');
-       $id=$this->request->getVar('id');
-
        
+        $db     =\Config\Database::connect();
+        $builder=$db->table('solicitante');
 
+        $estado=$this->request->getVar('opcion');
+        $idS=$this->request->getVar('id');
+
+        $builder->getWhere(['IDSOLICITANTE' => $idS]);
+
+         $data = [
+            'IDESTADOPOSTULANTE' => $estado,
+        ];
+        $builder->update($data);
+        
+       return view('Solicitante/index');
     }
 }
