@@ -33,13 +33,13 @@
         <div class="col-sm-5">
             <label class="" for="priNomSolicitante">Primer Nombre</label>
             
-            <input type="text" id="priNomSolicitante" name="priNomSolicitante" class="form-control" autofocus="" required>
+            <input type="text" id="priNomSolicitante" autocomplete="off" name="priNomSolicitante" class="form-control" autofocus="" required>
         </div>
         
         <div class="col-sm-5">
             <label class="" for="segNomSolicitante">Segundo Nombre</label>
             
-            <input type="text" id="segNomSolicitante" name="segNomSolicitante" class="form-control" autofocus="" required>
+            <input type="text" id="segNomSolicitante" name="segNomSolicitante" class="form-control" autocomplete="off" autofocus="" required>
         </div>
         </div>
         <br>
@@ -48,20 +48,20 @@
         <div class="col-sm-5">
             <label class="" for="priApeSolicitante">Primer Apellido</label>
          
-            <input type="text" id="priApeSolicitante" name="priApeSolicitante" class="form-control" autofocus="" required>
+            <input type="text" id="priApeSolicitante" autocomplete="off" name="priApeSolicitante" class="form-control" autofocus="" required>
         </div>
 
         <div class="col-sm-5">
             <label class="" for="segApeSolicitante">Segundo Apellido</label>
             
-            <input type="text" id="segApeSolicitante" name="segApeSolicitante" class="form-control" autofocus="" required>
+            <input type="text" id="segApeSolicitante" autocomplete="off" name="segApeSolicitante" class="form-control" autofocus="" required>
         </div>
         </div>
         <br>
         <div class="col-sm-8">
             <label for="correoAspirante">Correo Electronico</label>
             
-            <input type="email" id="correoAspirante" name="correoAspirante" class="form-control" autofocus="" required>
+            <input type="email" id="correoAspirante" autocomplete="off" name="correoAspirante" class="form-control" autofocus="" required>
         </div>
             <br>
         <div class="md-3 row">
@@ -69,13 +69,13 @@
         <div class="col-sm-5">
             <label class="" for="fechaNacimiento">Fecha de nacimiento</label>
            
-            <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-control" autofocus="" required>
+            <input type="date" id="fechaNacimiento" autocomplete="off" name="fechaNacimiento" class="form-control" autofocus="" required>
         </div>
             
         <div class="col-sm-5">
             <label class="" for="duiAspirante">DUI</label>
             
-            <input type="text" id="duiSolicitante" name="duiSolicitante" class="form-control" autofocus="" required>
+            <input type="text" id="duiSolicitante" autocomplete="off" name="duiSolicitante" class="form-control" autofocus="" required>
         </div>
         </div>
         <br>
@@ -84,13 +84,13 @@
         <div class="col-sm-5">
             <label class="" for="genero">Genero</label>
             
-            <input type="text" id="genero" name="genero" class="form-control" autofocus="" required>
+            <input type="text" id="genero" autocomplete="off" name="genero" class="form-control" autofocus="" required>
         </div>
 
         <div class="col-sm-5">
             <label class="" for="nitAspirante">NIT</label>
             
-            <input type="text" id="nitAspirante" name="nitAspirante" class="form-control" autofocus="" required>
+            <input type="text" id="nitAspirante" autocomplete="off" name="nitAspirante" class="form-control" autofocus="" required>
         </div>
         </div>
         <br>
@@ -100,7 +100,7 @@
         <div class="col-sm-5">
             <label class="" for="nivelAcademico">Nivel Academico</label>
             
-            <input type="text" id="nivelAcademico" name="nivelAcademico" class="form-control" autofocus="" required>
+            <input type="text" id="nivelAcademico" autocomplete="off" name="nivelAcademico" class="form-control" autofocus="" required>
         </div>
 
         <div class="col-sm-5">
