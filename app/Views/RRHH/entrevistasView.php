@@ -14,7 +14,7 @@
             <tbody>
                 <tr>
                     <td rowspan="2">
-                        <?php if ($dat['URLFOTOCANDIDATO'] != NULL||$dat['URLFOTOCANDIDATO'] !=" ") : ?>
+                        <?php if ($dat['URLFOTOCANDIDATO'] != NULL||$dat['URLFOTOCANDIDATO'] ==" ") : ?>
                             <img src="<?= $dat['URLFOTOCANDIDATO']; ?>" width="150px" height="150px">
                         <?php endif;
                         if ($dat['URLFOTOCANDIDATO'] == NULL) : ?>

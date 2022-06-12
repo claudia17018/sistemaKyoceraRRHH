@@ -5,6 +5,9 @@ namespace App\Controllers\RRHH;
 use App\Controllers\BaseController;
 use App\Models\VacantesModel;
 use App\Models\RequerimientosVacanteModel;
+use App\Models\SolicitanteModel;
+use App\Models\FechaPostulacionModel;
+
 use CodeIgniter\Database\MySQLi\Builder;
 
 use function PHPUnit\Framework\equalTo;
@@ -198,12 +201,7 @@ class Admin extends BaseController
 
         return $this->response->redirect(site_url('AdminRH/vacantes'));
     }
-    public function vacantesPostulantes($id = null)
-    {
-
-
-        return view('RRHH/vacantesPostulantes');
-    }
+   
     
     public function vacantesEstado($id = null)
     {
@@ -241,8 +239,8 @@ class Admin extends BaseController
 
 
 
-    public function prueba()
-    {
+    public function prueba($id = null)
+    {/*
         $vacante = new VacantesModel();
         $idVacante = $vacante->select()->find();
         // $id=$this->request->getVar('id2');
@@ -261,8 +259,39 @@ class Admin extends BaseController
             $yolo=$idVacante;
         }
        
+*/
+
+        print_r('Aqui va el solicitante');
+    }
 
 
-        print_r($yolo);
+    public function vacantesPostulantes($id = null)
+    {
+        $vacanteEditar = new VacantesModel();
+        $fechaPostulacion = new FechaPostulacionModel();
+        $postulante = new SolicitanteModel();
+       
+
+        
+     
+
+        $d['vacante'] = $vacanteEditar->where('IDVACANTE', $id)->first();
+        $d['fechaPos'] =  $fechaPostulacion->where('IDVACANTE',$id)->find();
+        $d['pos'] =  $postulante->find();
+
+       /* $solicitantes=$fechaPostulacion->where('IDVACANTE', $id)->select('IDSOLICITANTE')->find();
+        
+       // IDSOLICITANTE
+        foreach ($solicitantes as  $value) {
+         $p= $postulante->where('IDSOLICITANTE', $value['IDSOLICITANTE'])->first();
+            
+        }
+
+        $datos['postulante'] =  $p;
+      
+        
+*/
+
+        return view('RRHH/vacantesPostulantes', $d);
     }
 }
