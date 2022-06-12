@@ -36,7 +36,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $indexPage = '/Auth';
+    public $indexPage = '/';
 
     /**
      * --------------------------------------------------------------------------
